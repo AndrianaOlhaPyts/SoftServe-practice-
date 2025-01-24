@@ -5,7 +5,7 @@
         public Guid Id { get; set; } // Унікальний ідентифікатор
         public Guid SessionId { get; set; } // Ідентифікатор сеансу
         public Guid SeatId { get; set; } // Ідентифікатор місця
-        public Guid UserId { get; set; } // Ідентифікатор користувача
+        public string UserId { get; set; } // Ідентифікатор користувача
         public int SeatNumber { get; set; } // Номер місця
         public string Status { get; set; } // Статус квитка (наприклад, "booked", "paid", "canceled")
         public double Price { get; set; } // Ціна квитка
