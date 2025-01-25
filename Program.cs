@@ -1,4 +1,5 @@
 using Cinema.Data;
+using Cinema.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,8 +13,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<CinemaContext>();
-builder.Services.AddControllersWithViews();
 
+// Додайте ваші репозиторії та UnitOfWork
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
