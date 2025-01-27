@@ -8,12 +8,12 @@ using Cinema.Data;
 
 namespace Cinema.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly CinemaContext _context;
+        protected readonly CinemaContext _context;
         private readonly DbSet<T> _dbSet;
 
-        public Repository(CinemaContext context)
+        public GenericRepository(CinemaContext context)
         {
             _context = context;
             _dbSet = _context.Set<T>();
@@ -24,7 +24,7 @@ namespace Cinema.Repositories
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(object id)
+        public async Task<T?> GetByIdAsync(Guid id) // Виправлено сигнатуру
         {
             return await _dbSet.FindAsync(id);
         }
@@ -39,15 +39,21 @@ namespace Cinema.Repositories
             await _dbSet.AddAsync(entity);
         }
 
-        public void Update(T entity)
+        public async Task UpdateAsync(T entity) // Додано асинхронну реалізацію
         {
             _dbSet.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
+            await SaveAsync();
         }
 
-        public void Delete(T entity)
+        public async Task DeleteAsync(Guid id) // Додано асинхронну реалізацію
         {
-            _dbSet.Remove(entity);
+            var entity = await GetByIdAsync(id);
+            if (entity != null)
+            {
+                _dbSet.Remove(entity);
+                await SaveAsync();
+            }
         }
 
         public async Task SaveAsync()

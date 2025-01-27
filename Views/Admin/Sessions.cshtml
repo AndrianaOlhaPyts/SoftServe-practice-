@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Cinema.Models.DataBaseModels.Session>
+
+<h1>Sessions</h1>
+<table>
+    <tr>
+        <th>Movie</th>
+        <th>Hall</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var session in Model)
+    {
+        <tr>
+            <td>@session.Movie.Title</td>
+            <td>@session.HallId</td>
+            <td>@session.StartTime</td>
+            <td>@session.EndTime</td>
+            <td>@session.TicketPrice</td>
+            <td>
+                <a href="@Url.Action("SessionDetails", new { id = session.Id })">Details</a>
+            </td>
+        </tr>
+    }
+</table>

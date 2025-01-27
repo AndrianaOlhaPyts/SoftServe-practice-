@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Cinema.Models.DataBaseModels.Movie>
+
+<h1>Movies</h1>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Duration</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var movie in Model)
+    {
+        <tr>
+            <td>@movie.Title</td>
+            <td>@movie.Genre</td>
+            <td>@movie.DurationMinutes</td>
+            <td>
+                <a href="@Url.Action("MovieDetails", new { id = movie.Id })">Details</a>
+            </td>
+        </tr>
+    }
+</table>

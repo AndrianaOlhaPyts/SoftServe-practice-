@@ -12,21 +12,21 @@ namespace Cinema.Repositories
         {
             _context = context;
             Movies = new MovieRepository(_context);
-            Halls = new Repository<Hall>(_context);
-            Rows = new Repository<Row>(_context);
-            Seats = new Repository<Seat>(_context);
-            Sessions = new Repository<Session>(_context);
-            Tickets = new Repository<Ticket>(_context);
-            SalesStatistics = new Repository<SalesStatistics>(_context);
+            Halls = new GenericRepository<Hall>(_context);
+            Rows = new GenericRepository<Row>(_context);
+            Seats = new GenericRepository<Seat>(_context);
+            Sessions = new GenericRepository<Session>(_context);
+            Tickets = new GenericRepository<Ticket>(_context);
+            SalesStatistics = new GenericRepository<SalesStatistics>(_context);
         }
 
         public IMovieRepository Movies { get; private set; }
-        public IRepository<Hall> Halls { get; private set; }
-        public IRepository<Row> Rows { get; private set; }
-        public IRepository<Seat> Seats { get; private set; }
-        public IRepository<Session> Sessions { get; private set; }
-        public IRepository<Ticket> Tickets { get; private set; }
-        public IRepository<SalesStatistics> SalesStatistics { get; private set; }
+        public IGenericRepository<Hall> Halls { get; private set; }
+        public IGenericRepository<Row> Rows { get; private set; }
+        public IGenericRepository<Seat> Seats { get; private set; }
+        public IGenericRepository<Session> Sessions { get; private set; }
+        public IGenericRepository<Ticket> Tickets { get; private set; }
+        public IGenericRepository<SalesStatistics> SalesStatistics { get; private set; }
 
         public async Task SaveAsync()
         {
