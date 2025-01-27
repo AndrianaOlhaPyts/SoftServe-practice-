@@ -3,7 +3,7 @@
     public class Hall
     {
         public Guid Id { get; set; } // Унікальний ідентифікатор
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty; // name
         public string Description { get; set; } = string.Empty;
 
         // Навігаційні властивості
