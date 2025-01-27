@@ -6,12 +6,12 @@ namespace Cinema.Repositories
     public interface IUnitOfWork
     {
         IMovieRepository Movies { get; }
-        IRepository<Hall> Halls { get; }
-        IRepository<Row> Rows { get; }
-        IRepository<Seat> Seats { get; }
-        IRepository<Session> Sessions { get; }
-        IRepository<Ticket> Tickets { get; }
-        IRepository<SalesStatistics> SalesStatistics { get; }
+        IGenericRepository<Hall> Halls { get; }
+        IGenericRepository<Row> Rows { get; }
+        IGenericRepository<Seat> Seats { get; }
+        IGenericRepository<Session> Sessions { get; }
+        IGenericRepository<Ticket> Tickets { get; }
+        IGenericRepository<SalesStatistics> SalesStatistics { get; }
         Task SaveAsync();
     }
 }

@@ -1,24 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-using Cinema.Data;
+﻿using Cinema.Data;
 using Cinema.Models.DataBaseModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cinema.Repositories
 {
-    public class MovieRepository : Repository<Movie>, IMovieRepository
+    public class MovieRepository : GenericRepository<Movie>, IMovieRepository
     {
-        private readonly CinemaContext _context;
+        public MovieRepository(CinemaContext context) : base(context) { }
 
-        public MovieRepository(CinemaContext context) : base(context)
-        {
-            _context = context;
-        }
-
-        public async Task<Movie> GetMovieWithSessionsAsync(Guid movieId)
+        public async Task<Movie?> GetMovieWithSessionsAsync(Guid id)
         {
             return await _context.Movies
                 .Include(m => m.Sessions)
-                .FirstOrDefaultAsync(m => m.Id == movieId);
+                .FirstOrDefaultAsync(m => m.Id == id);
         }
     }
 }

@@ -1,10 +1,9 @@
-﻿using System.Threading.Tasks;
-using Cinema.Models.DataBaseModels;
+﻿using Cinema.Models.DataBaseModels;
 
 namespace Cinema.Repositories
 {
-    public interface IMovieRepository : IRepository<Movie>
+    public interface IMovieRepository : IGenericRepository<Movie>
     {
-        Task<Movie> GetMovieWithSessionsAsync(Guid movieId);
+        Task<Movie?> GetMovieWithSessionsAsync(Guid id);
     }
 }
