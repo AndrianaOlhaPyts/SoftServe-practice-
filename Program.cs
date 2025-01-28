@@ -2,7 +2,6 @@ using Cinema.Data;
 using Cinema.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Cinema.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +17,6 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 // Додайте ваші репозиторії та UnitOfWork
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
-builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<ISessionRepository, SessionRepository>();
 
 
