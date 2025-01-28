@@ -5,61 +5,56 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
-build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Cinema
 build_property.RootNamespace = Cinema
-build_property.ProjectDir = D:\Andriana\SoftServe-practice\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = C:\Users\User\Desktop\SoftServe-practice-\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Andriana\SoftServe-practice
+build_property.MSBuildProjectDirectory = C:\Users\User\Desktop\SoftServe-practice-
 build_property._RazorSourceGeneratorDebug = 
-build_property.EffectiveAnalysisLevelStyle = 6.0
-build_property.EnableCodeStyleSeverity = 
 
-[D:/Andriana/SoftServe-practice/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/User/Desktop/SoftServe-practice-/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Andriana/SoftServe-practice/Views/Admin/Movies.cshtml]
+[C:/Users/User/Desktop/SoftServe-practice-/Views/Admin/Movies.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTW92aWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Andriana/SoftServe-practice/Views/Admin/Sessions.cshtml]
+[C:/Users/User/Desktop/SoftServe-practice-/Views/Admin/Sessions.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cU2Vzc2lvbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Andriana/SoftServe-practice/Views/Home/Index.cshtml]
+[C:/Users/User/Desktop/SoftServe-practice-/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Andriana/SoftServe-practice/Views/Home/Privacy.cshtml]
+[C:/Users/User/Desktop/SoftServe-practice-/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Andriana/SoftServe-practice/Views/Shared/Error.cshtml]
+[C:/Users/User/Desktop/SoftServe-practice-/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Andriana/SoftServe-practice/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/User/Desktop/SoftServe-practice-/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Andriana/SoftServe-practice/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/User/Desktop/SoftServe-practice-/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Andriana/SoftServe-practice/Views/_ViewImports.cshtml]
+[C:/Users/User/Desktop/SoftServe-practice-/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Andriana/SoftServe-practice/Views/_ViewStart.cshtml]
+[C:/Users/User/Desktop/SoftServe-practice-/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Andriana/SoftServe-practice/Views/Shared/_Layout.cshtml]
+[C:/Users/User/Desktop/SoftServe-practice-/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-2pfaoicsxw

@@ -193,6 +193,7 @@ namespace Cinema.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     HallId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Number = table.Column<int>(type: "integer", nullable: false),
                     SeatsCount = table.Column<int>(type: "integer", nullable: false),
                     LayoutType = table.Column<string>(type: "text", nullable: false)
                 },
