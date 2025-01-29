@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Cinema.Models.DataBaseModels.Movie>
+
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<h1>Movies</h1>
+
+<p>
+    <a href="@Url.Action("CreateMovie", "Movies")" class="btn btn-primary">Add New Movie</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Poster</th>
+            <th>Title</th>
+            <th>Trailer</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <!-- Poster -->
+                <td>
+                    <img src="@movie.PosterUrl" alt="Poster for @movie.Title" style="width: 100px; height: auto;" />
+                </td>
+
+                <!-- Title -->
+                <td>
+                    <a href="@Url.Action("DetailsMovie", "Movies", new { id = movie.Id })">
+                        @movie.Title
+                    </a>
+                </td>
+
+                <!-- Trailer -->
+                <td>
+                    <a href="@movie.TrailerUrl" target="_blank" class="btn btn-secondary">Watch Trailer</a>
+                </td>
+
+                <!-- Actions -->
+                <td>
+                    <a href="@Url.Action("EditMovie", "Movies", new { id = movie.Id })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("Delete", "Movies", new { id = movie.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

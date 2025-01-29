@@ -91,6 +91,9 @@ namespace Cinema.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("Number")
+                        .HasColumnType("integer");
+
                     b.Property<int>("SeatsCount")
                         .HasColumnType("integer");
 
