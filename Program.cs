@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<CinemaContext>(options =>

@@ -33,6 +33,11 @@ namespace Cinema.Controllers
             var movies = await _unitOfWork.Movies.GetAllAsync(); // Очікуємо результат
             return View(movies); // Передаємо результат у вигляд
         }
+        public async Task<IActionResult> Sessions()
+        {
+            var sessions = await _unitOfWork.Sessions.GetAllAsync(); // Очікуємо результат
+            return View(sessions); // Передаємо результат у вигляд
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

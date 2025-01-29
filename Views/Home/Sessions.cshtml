@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Cinema.Models.DataBaseModels.Session>
+
+@{
+    ViewData["Title"] = "Sessions";
+}
+
+<h1>Sessions</h1>
+
+<p>
+    <a href="@Url.Action("CreateSession","Sessions")" class="btn btn-primary">Add New Session</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Movie</th>
+            <th>Hall</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var session in Model)
+        {
+            <tr>
+                <td>@session.Movie.Title</td>
+                <td>@session.Hall.Name</td>
+                <td>@session.StartTime.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@session.EndTime.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>
+                    <a href="@Url.Action("DetailsSession", new { id = session.Id })" class="btn btn-info">View</a>
+                    <a href="@Url.Action("EditSession", new { id = session.Id })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("Delete", new { id = session.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

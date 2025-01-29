@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Cinema.Migrations
 {
     [DbContext(typeof(CinemaContext))]
-    [Migration("20250128093237_InitialCreate")]
+    [Migration("20250129213927_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -169,9 +169,6 @@ namespace Cinema.Migrations
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<decimal>("TicketPrice")
-                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
@@ -582,8 +579,7 @@ namespace Cinema.Migrations
 
             modelBuilder.Entity("Cinema.Models.DataBaseModels.Session", b =>
                 {
-                    b.Navigation("SalesStatistics")
-                        .IsRequired();
+                    b.Navigation("SalesStatistics");
 
                     b.Navigation("Tickets");
                 });

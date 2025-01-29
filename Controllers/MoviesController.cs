@@ -71,7 +71,7 @@ namespace Cinema.Controllers
         }
 
         // Видалення фільму
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> DeleteMovie(Guid id)
         {
             var movie = await _unitOfWork.Movies.GetByIdAsync(id);
             if (movie == null)
@@ -81,18 +81,21 @@ namespace Cinema.Controllers
             return View(movie);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("DeleteMovie")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var movie = await _unitOfWork.Movies.GetByIdAsync(id);
             if (movie != null)
             {
-                _unitOfWork.Movies.DeleteAsync(id);
-                await _unitOfWork.SaveAsync();
+                // Замість одночасного збереження, спочатку видаляйте, а потім збережіть
+                await _unitOfWork.Movies.DeleteAsync(id);
+
+                await _unitOfWork.SaveAsync();  // Викликається після завершення всіх операцій
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Movies", "Home"); // Повертає до списку фільмів
         }
+
 
         // Сторінка з деталями фільму
         public async Task<IActionResult> DetailsMovie(Guid id)
