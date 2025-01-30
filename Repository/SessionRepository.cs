@@ -16,5 +16,20 @@ namespace Cinema.Repositories
                 .Where(s => s.MovieId == movieId)
                 .ToListAsync();
         }
+        public async Task<IEnumerable<Session>> GetAllSessionsAsync()
+        {
+            return await _context.Sessions
+                .Include(s => s.Movie) // Завантажуємо зв’язану таблицю Movie
+                .Include(s => s.Hall)  // Завантажуємо зв’язану таблицю Hall
+                .ToListAsync();
+        }
+        public async Task<Session> GetByIdSessionAsync(Guid id)
+        {
+            var session = await _context.Sessions
+                .Include(s => s.Movie)
+                .Include(s => s.Hall)
+                .FirstOrDefaultAsync(s => s.Id == id);
+            return session;
+        }
     }
 }

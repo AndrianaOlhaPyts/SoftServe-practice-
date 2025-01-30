@@ -9,7 +9,7 @@ namespace Cinema.Repositories
         IGenericRepository<Hall> Halls { get; }
         IGenericRepository<Row> Rows { get; }
         IGenericRepository<Seat> Seats { get; }
-        IGenericRepository<Session> Sessions { get; }
+        ISessionRepository Sessions { get; }
         IGenericRepository<Ticket> Tickets { get; }
         IGenericRepository<SalesStatistics> SalesStatistics { get; }
         Task SaveAsync();

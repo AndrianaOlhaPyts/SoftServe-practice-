@@ -63,7 +63,7 @@ namespace Cinema.Controllers
 
             if (ModelState.IsValid)
             {
-                _unitOfWork.Movies.UpdateAsync(movie);
+                await _unitOfWork.Movies.UpdateAsync(movie);
                 await _unitOfWork.SaveAsync();
                 return RedirectToAction("Movies", "Home");
             }

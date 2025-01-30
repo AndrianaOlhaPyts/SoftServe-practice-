@@ -35,7 +35,7 @@ namespace Cinema.Controllers
         }
         public async Task<IActionResult> Sessions()
         {
-            var sessions = await _unitOfWork.Sessions.GetAllAsync(); // Очікуємо результат
+            var sessions = await _unitOfWork.Sessions.GetAllSessionsAsync(); // Очікуємо результат
             return View(sessions); // Передаємо результат у вигляд
         }
 
