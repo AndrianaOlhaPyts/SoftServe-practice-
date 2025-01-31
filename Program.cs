@@ -1,4 +1,5 @@
 using Cinema.Data;
+using Cinema.Models.DataBaseModels;
 using Cinema.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

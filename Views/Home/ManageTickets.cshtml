@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Cinema.Models.DataBaseModels.Ticket>
+
+@{
+    ViewData["Title"] = "Manage Tickets";
+}
+
+<h2>Manage Tickets</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Seat Number</th>
+            <th>Status</th>
+            <th>Price</th>
+            <th>Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ticket in Model)
+        {
+            <tr>
+                <td>@ticket.SeatNumber</td>
+                <td>@ticket.Status</td>
+                <td>
+                    <input type="number" class="price-input" data-ticket-id="@ticket.Id" value="@ticket.Price" />
+                </td>
+                <td>
+                    <button class="btn btn-primary update-price" data-ticket-id="@ticket.Id">Save</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    document.querySelectorAll(".update-price").forEach(button => {
+        button.addEventListener("click", async () => {
+            let ticketId = button.getAttribute("data-ticket-id");
+            let priceInput = document.querySelector(`.price-input[data-ticket-id='${ticketId}']`);
+            let price = parseFloat(priceInput.value);
+
+            let response = await fetch('/Tickets/UpdatePrice', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ticketId, price })
+            });
+
+            if (response.ok) {
+                alert("Price updated successfully!");
+            } else {
+                alert("Error updating price.");
+            }
+        });
+    });
+</script>

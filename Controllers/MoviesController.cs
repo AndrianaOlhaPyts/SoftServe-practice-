@@ -1,4 +1,5 @@
 ﻿using Cinema.Models.DataBaseModels;
+using Cinema.Models.ViewModels;
 using Cinema.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -105,8 +106,18 @@ namespace Cinema.Controllers
             {
                 return NotFound();
             }
-            return View(movie);
+
+            var sessions = await _unitOfWork.Sessions.GetSessionsByMovieIdAsync(id);
+
+            var viewModel = new MovieDetailsViewModel
+            {
+                Movie = movie,
+                Sessions = sessions
+            };
+
+            return View(viewModel);
         }
+
 
     }
 }
