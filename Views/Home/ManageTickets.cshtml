@@ -28,7 +28,7 @@
 </div>
 
 <!-- Кнопка для збереження всіх змін -->
-<button id="create-ticket-btn">Create</button>
+<button id="create-ticket-btn">Save</button>
 
 <div class="screen-container">
     <div class="screen">Екран</div>
@@ -38,7 +38,7 @@
     .hall-layout {
         display: flex;
         flex-direction: column;
-        gap: 15px; /* Збільшено відстань між рядами */
+        gap: 10px; /* Збільшено відстань між рядами */
         align-items: center;
         margin-bottom: 30px;
     }
@@ -50,8 +50,8 @@
     }
 
     .seat {
-        width: 60px;  /* Збільшено ширину */
-        height: 60px; /* Збільшено висоту */
+        width: 50px;  /* Збільшено ширину */
+        height: 50px; /* Збільшено висоту */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -102,7 +102,7 @@
 </style>
 
 <script>
-    // Додаємо обробник події для кнопки "Create"
+    // Додаємо обробник події для кнопки "Save"
     document.getElementById("create-ticket-btn").addEventListener("click", async () => {
         // Збираємо всі зміни
         const ticketUpdates = [];
@@ -143,7 +143,7 @@
 
         if (response.ok) {
             alert("All prices updated successfully!");
-            window.location.href = 'Home/Sessions'; // Перенаправлення на сторінку із сеансами після успішного збереження
+            window.location.href = '/Home/Sessions'; // Перенаправлення на сторінку із сеансами після успішного збереження
         } else {
             alert("Error updating prices.");
         }
