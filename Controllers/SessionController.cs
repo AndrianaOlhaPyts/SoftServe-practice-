@@ -3,6 +3,7 @@ using Cinema.Models.ViewModels;
 using Cinema.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,10 +12,13 @@ namespace Cinema.Controllers
 {
     public class SessionsController : Controller
     {
+        private readonly UserManager<User> _userManager; // Додаємо UserManager
         private readonly IUnitOfWork _unitOfWork;
 
-        public SessionsController(IUnitOfWork unitOfWork)
+        // Вбудовуємо UserManager через конструктор
+        public SessionsController(UserManager<User> userManager, IUnitOfWork unitOfWork)
         {
+            _userManager = userManager;
             _unitOfWork = unitOfWork;
         }
 
@@ -49,22 +53,11 @@ namespace Cinema.Controllers
         {
             if (!ModelState.IsValid)
             {
-                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    Console.WriteLine($"ModelState Error: {error.ErrorMessage}");
-                }
-
-                // Логування значень для перевірки
-                Console.WriteLine($"MovieId: {model.MovieId}, HallId: {model.HallId}");
-
                 ViewBag.Movies = new SelectList(await _unitOfWork.Movies.GetAllAsync(), "Id", "Title");
                 ViewBag.Halls = new SelectList(await _unitOfWork.Halls.GetAllAsync(), "Id", "Name");
-
                 return View(model);
             }
 
-            // Перетворення ViewModel на модель Session
-            
             var session = new Session
             {
                 Id = Guid.NewGuid(),
@@ -73,12 +66,45 @@ namespace Cinema.Controllers
                 StartTime = model.StartTime,
                 EndTime = model.EndTime
             };
-            Console.WriteLine($"MovieId: {session.MovieId}, HallId: {session.HallId}");
+
             await _unitOfWork.Sessions.AddAsync(session);
             await _unitOfWork.SaveAsync();
 
-            return RedirectToAction("Sessions", "Home");
+            // Отримуємо поточного користувача
+            var currentUser = await _userManager.GetUserAsync(User);  // User - це поточний користувач в контексті аутентифікації
+            var userId = currentUser?.Id;  // Отримуємо ID користувача, який увійшов
+
+            if (userId == null)
+            {
+                // Якщо користувач не авторизований, можна обробити це випадок (наприклад, переадресувати на сторінку входу)
+                return RedirectToAction("Login", "Account");
+            }
+
+            // 📌 Отримуємо всі місця в залі
+            var seats = await _unitOfWork.Seats.GetSeatsByHallIdAsync(model.HallId);
+
+            // 📌 Створюємо квитки для всіх місць
+            foreach (var seat in seats)
+            {
+                var ticket = new Ticket
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = userId, // Присвоюємо ID користувача
+                    SessionId = session.Id,
+                    SeatId = seat.Id,
+                    SeatNumber = seat.SeatNumber,
+                    Status = "not sold",
+                    Price = 0 // Початкова ціна
+                };
+                await _unitOfWork.Tickets.AddAsync(ticket);
+            }
+
+            await _unitOfWork.SaveAsync();
+
+            // 📌 Перенаправляємо на сторінку керування квитками
+            return RedirectToAction("ManageTickets", "Home", new { sessionId = session.Id });
         }
+
 
         // 📌 Форма редагування сеансу
         public async Task<IActionResult> EditSession(Guid id)

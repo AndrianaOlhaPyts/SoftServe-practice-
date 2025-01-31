@@ -30,16 +30,37 @@ namespace Cinema.Controllers
 
         // 📌 Оновлення ціни квитка
         [HttpPost]
-        public async Task<IActionResult> UpdatePrice(Guid ticketId, double price)
+        public async Task<IActionResult> UpdatePrices([FromBody] List<TicketPriceUpdateModel> updates)
         {
-            var ticket = await _unitOfWork.Tickets.GetByIdAsync(ticketId);
-            if (ticket == null) return NotFound();
+            if (updates == null || !updates.Any())
+            {
+                return BadRequest("No ticket updates provided.");
+            }
 
-            ticket.Price = price;
-            await _unitOfWork.Tickets.UpdateAsync(ticket);
+            foreach (var update in updates)
+            {
+                var ticket = await _unitOfWork.Tickets.GetByIdAsync(update.TicketId);
+                if (ticket == null)
+                {
+                    return NotFound($"Ticket with ID {update.TicketId} not found.");
+                }
+
+                ticket.Price = update.Price;
+                await _unitOfWork.Tickets.UpdateAsync(ticket);
+            }
+
             await _unitOfWork.SaveAsync();
 
             return Ok(new { success = true });
         }
+
+
+        // Модель для прийому JSON-запиту
+        public class TicketPriceUpdateModel
+        {
+            public Guid TicketId { get; set; }
+            public double Price { get; set; }
+        }
+
     }
 }

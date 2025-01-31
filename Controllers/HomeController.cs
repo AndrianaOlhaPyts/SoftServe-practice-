@@ -38,6 +38,16 @@ namespace Cinema.Controllers
             var sessions = await _unitOfWork.Sessions.GetAllSessionsAsync(); // Очікуємо результат
             return View(sessions); // Передаємо результат у вигляд
         }
+        public async Task<IActionResult> ManageTickets(Guid sessionId)
+        {
+            var tickets = await _unitOfWork.Tickets.GetTicketsBySessionIdAsync(sessionId);
+            if (tickets == null || !tickets.Any())
+            {
+                return NotFound("Квитки не знайдено.");
+            }
+
+            return View(tickets);
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
