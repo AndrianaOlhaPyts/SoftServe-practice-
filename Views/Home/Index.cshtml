@@ -1,8 +1,65 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using Cinema.Models.DataBaseModels
+@model List<IGrouping<Movie, Session>>
+
+
+@{
+    ViewData["Title"] = "Upcoming Movies & Sessions";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <h2 class="text-center">Upcoming Movies & Sessions</h2>
+
+    @foreach (var group in Model)
+    {
+        var movie = group.Key;
+        var trailerUrl = movie.TrailerUrl; // URL трейлера
+
+        <div class="card mb-4">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="@movie.PosterUrl" class="img-fluid rounded-start" alt="@movie.Title Poster">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="@Url.Action("DetailsMovie", "Movies", new { id = movie.Id })">@movie.Title</a>
+                        </h4>
+
+                        <button class="btn btn-danger" onclick="showTrailer('@trailerUrl')">
+                            Watch Trailer
+                        </button>
+
+                        <div id="trailer-container-@movie.Id" class="mt-3" style="display: none;">
+                            <iframe id="trailer-@movie.Id" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
+                        </div>
+
+                        <h5 class="mt-3">Upcoming Sessions:</h5>
+                        @foreach (var session in group.OrderBy(s => s.StartTime))
+                        {
+                            <p>
+                                <strong>@session.StartTime.ToString("dd MMMM yyyy")</strong>
+                                <a href="@Url.Action("DetailsSession", "Sessions", new { id = session.Id })" class="btn btn-primary ms-2">
+                                    @session.StartTime.ToString("HH:mm")
+                                </a>
+                            </p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
+
+<script>
+    function showTrailer(url) {
+        let container = document.querySelector(`#trailer-container-${url.split('/').pop()}`);
+        let iframe = container.querySelector("iframe");
+        if (container.style.display === "none") {
+            iframe.src = url.replace("watch?v=", "embed/");
+            container.style.display = "block";
+        } else {
+            iframe.src = "";
+            container.style.display = "none";
+        }
+    }
+</script>

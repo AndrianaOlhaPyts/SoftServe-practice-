@@ -18,9 +18,18 @@ namespace Cinema.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var today = DateTime.UtcNow;
+            var sessions = await _unitOfWork.Sessions.GetAllSessionsAsync();
+
+            var upcomingSessions = sessions
+                .Where(s => s.StartTime > today)
+                .OrderBy(s => s.StartTime)
+                .GroupBy(s => s.Movie)
+                .ToList();
+
+            return View(upcomingSessions);
         }
 
         public IActionResult Privacy()
@@ -48,7 +57,6 @@ namespace Cinema.Controllers
 
             return View(tickets);
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
