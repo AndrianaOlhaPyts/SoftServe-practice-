@@ -10,11 +10,11 @@
     <input type="hidden" asp-for="Id" />
     <div class="form-group">
         <label>Movie</label>
-        <select asp-for="MovieId" class="form-control" asp-items="@(new SelectList(ViewBag.Movies, "Id", "Title"))"></select>
+        <select asp-for="MovieId" class="form-control" asp-items="ViewBag.Movies"></select>
     </div>
     <div class="form-group">
         <label>Hall</label>
-        <select asp-for="HallId" class="form-control" asp-items="@(new SelectList(ViewBag.Halls, "Id", "Name"))"></select>
+        <select asp-for="HallId" class="form-control" asp-items="ViewBag.Halls"></select>
     </div>
     <div class="form-group">
         <label>Start Time</label>
@@ -27,5 +27,3 @@
     <button type="submit" class="btn btn-primary">Save</button>
 </form>
 
-<!-- Додана кнопка для переходу на сторінку управління цінами квитків -->
-<a href="@Url.Action("ManageTickets", "Tickets")" class="btn btn-secondary mt-3">Manage Tickets</a>

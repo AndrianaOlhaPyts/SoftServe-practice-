@@ -132,8 +132,8 @@ namespace Cinema.Controllers
                 Console.WriteLine("Halls list is empty.");
             }
 
-            ViewBag.Movies = new SelectList(movies, "Id", "Title", session.MovieId);
-            ViewBag.Halls = new SelectList(halls, "Id", "Name", session.HallId);
+            ViewBag.Movies = new SelectList(await _unitOfWork.Movies.GetAllAsync(), "Id", "Title");
+            ViewBag.Halls = new SelectList(await _unitOfWork.Halls.GetAllAsync(), "Id", "Name");
 
             return View(session);
         }
@@ -149,13 +149,10 @@ namespace Cinema.Controllers
 
             if (id != session.Id) return NotFound();
 
-            if (ModelState.IsValid)
-            {
-                await _unitOfWork.Sessions.UpdateAsync(session);
-                await _unitOfWork.SaveAsync();
-                return RedirectToAction("Sessions", "Home");
-            }
-            return View(session);
+
+            await _unitOfWork.Sessions.UpdateAsync(session);
+            await _unitOfWork.SaveAsync();
+            return RedirectToAction("ManageTickets", "Home", new { sessionId = session.Id });
         }
 
         // 📌 Видалення сеансу
