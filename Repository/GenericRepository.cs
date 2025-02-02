@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Cinema.Data;
+using Cinema.Repository.Interface;
 
 namespace Cinema.Repositories
 {

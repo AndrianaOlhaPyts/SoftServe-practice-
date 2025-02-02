@@ -1,9 +1,9 @@
 ﻿using Cinema.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using Cinema.Repositories;
 using Cinema.Data;
 using Cinema.Models.DataBaseModels;
+using Cinema.Repository.Interface;
 
 namespace Cinema.Controllers
 {

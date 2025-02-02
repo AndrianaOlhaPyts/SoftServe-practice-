@@ -1,6 +1,6 @@
 ﻿using Cinema.Models.DataBaseModels;
 using Cinema.Models.ViewModels;
-using Cinema.Repositories;
+using Cinema.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

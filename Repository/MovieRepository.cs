@@ -1,5 +1,6 @@
 ﻿using Cinema.Data;
 using Cinema.Models.DataBaseModels;
+using Cinema.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cinema.Repositories

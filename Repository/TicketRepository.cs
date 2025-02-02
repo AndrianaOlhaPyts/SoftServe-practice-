@@ -1,6 +1,6 @@
 ﻿using Cinema.Data;
 using Cinema.Models.DataBaseModels;
-using Cinema.Repositories;
+using Cinema.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

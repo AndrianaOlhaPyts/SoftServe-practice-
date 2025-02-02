@@ -1,12 +1,13 @@
 ﻿using Cinema.Models.DataBaseModels;
 using Cinema.Models.ViewModels;
-using Cinema.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Cinema.Repository.Interface;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cinema.Controllers
 {
@@ -39,6 +40,7 @@ namespace Cinema.Controllers
         }
 
         // 📌 Форма створення сеансу
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateSession()
         {
             ViewBag.Movies = new SelectList(await _unitOfWork.Movies.GetAllAsync(), "Id", "Title");
@@ -49,6 +51,7 @@ namespace Cinema.Controllers
         // 📌 Додавання нового сеансу
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateSession(SessionCreateViewModel model)
         {
             if (!ModelState.IsValid)
@@ -107,6 +110,7 @@ namespace Cinema.Controllers
 
 
         // 📌 Форма редагування сеансу
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> EditSession(Guid id)
         {
             var session = await _unitOfWork.Sessions.GetByIdSessionAsync(id);
@@ -143,12 +147,10 @@ namespace Cinema.Controllers
         // 📌 Оновлення сеансу
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> EditSession(Guid id, Session session)
         {
-            
-
             if (id != session.Id) return NotFound();
-
 
             await _unitOfWork.Sessions.UpdateAsync(session);
             await _unitOfWork.SaveAsync();
@@ -156,6 +158,7 @@ namespace Cinema.Controllers
         }
 
         // 📌 Видалення сеансу
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteSession(Guid id)
         {
             var session = await _unitOfWork.Sessions.GetByIdSessionAsync(id);
@@ -164,6 +167,7 @@ namespace Cinema.Controllers
         }
 
         // 📌 Підтвердження видалення
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("DeleteSession")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)

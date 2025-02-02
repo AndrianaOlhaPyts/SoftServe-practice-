@@ -30,8 +30,11 @@
                 <td>@session.EndTime.ToString("yyyy-MM-dd HH:mm")</td>
                 <td>
                     <a href="@Url.Action("DetailsSession","Sessions", new { id = session.Id })" class="btn btn-info">View</a>
-                    <a href="@Url.Action("EditSession","Sessions", new { id = session.Id })" class="btn btn-warning">Edit</a>
-                    <a href="@Url.Action("DeleteSession","Sessions", new { id = session.Id })" class="btn btn-danger">Delete</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a href="@Url.Action("EditSession","Sessions", new { id = session.Id })" class="btn btn-warning">Edit</a>
+                        <a href="@Url.Action("DeleteSession","Sessions", new { id = session.Id })" class="btn btn-danger">Delete</a>
+                    }
                 </td>
             </tr>
         }

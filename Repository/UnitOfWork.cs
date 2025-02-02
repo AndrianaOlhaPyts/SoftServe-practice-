@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Cinema.Data;
 using Cinema.Models.DataBaseModels;
+using Cinema.Repository.Interface;
 
 namespace Cinema.Repositories
 {
