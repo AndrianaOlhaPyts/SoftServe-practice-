@@ -11,7 +11,7 @@
         public string PosterUrl { get; set; } = string.Empty;
         public decimal Rating { get; set; }
 
-        // Навігаційні властивості
+        // Навігаційні властивостіm
         public ICollection<Session> Sessions { get; set; } = new List<Session>();
     }
 }

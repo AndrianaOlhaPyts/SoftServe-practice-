@@ -1,4 +1,5 @@
 using Cinema.Data;
+using Cinema.Mapping;
 using Cinema.Models.DataBaseModels;
 using Cinema.Repositories;
 using Cinema.Repository.Interface;
@@ -25,6 +26,8 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services.AddScoped<ISessionRepository, SessionRepository>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddControllersWithViews();
 

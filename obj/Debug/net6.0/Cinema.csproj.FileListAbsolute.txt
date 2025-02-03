@@ -592,3 +592,5 @@ C:\Users\User\Desktop\SoftServe-practice-\obj\Debug\net6.0\refint\Cinema.dll
 C:\Users\User\Desktop\SoftServe-practice-\obj\Debug\net6.0\Cinema.pdb
 C:\Users\User\Desktop\SoftServe-practice-\obj\Debug\net6.0\Cinema.genruntimeconfig.cache
 C:\Users\User\Desktop\SoftServe-practice-\obj\Debug\net6.0\ref\Cinema.dll
+C:\Users\User\Desktop\SoftServe-practice-\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\User\Desktop\SoftServe-practice-\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
