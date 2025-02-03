@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cinema.Repository.Interface;
 using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
+using Cinema.DTOs;
 
 namespace Cinema.Controllers
 {
@@ -15,29 +17,40 @@ namespace Cinema.Controllers
     {
         private readonly UserManager<User> _userManager; // Додаємо UserManager
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;  // Додаємо AutoMapper
 
-        // Вбудовуємо UserManager через конструктор
-        public SessionsController(UserManager<User> userManager, IUnitOfWork unitOfWork)
+        // Вбудовуємо UserManager та AutoMapper через конструктор
+        public SessionsController(UserManager<User> userManager, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _userManager = userManager;
             _unitOfWork = unitOfWork;
+            _mapper = mapper;  // Інжекція AutoMapper
         }
 
         // 📌 Перегляд усіх сеансів
         public async Task<IActionResult> Sessions()
         {
             var sessions = await _unitOfWork.Sessions.GetAllSessionsAsync();
-            return View(sessions);
+            var sessionDTOs = _mapper.Map<List<SessionDTO>>(sessions);  // Перетворюємо в DTO
+            return View(sessionDTOs);  // Повертаємо список DTO
         }
-
 
         // 📌 Деталі сеансу
         public async Task<IActionResult> DetailsSession(Guid id)
         {
             var session = await _unitOfWork.Sessions.GetByIdSessionAsync(id);
             if (session == null) return NotFound();
-            return View(session);
+
+            var movie = await _unitOfWork.Movies.GetByIdAsync(session.MovieId);
+            var hall = await _unitOfWork.Halls.GetByIdAsync(session.HallId);
+
+            var sessionDTO = _mapper.Map<SessionDTO>(session);
+            sessionDTO.MovieTitle = movie?.Title;
+            sessionDTO.HallName = hall?.Name;
+
+            return View(sessionDTO);  // Передаємо DTO
         }
+
 
         // 📌 Форма створення сеансу
         [Authorize(Roles = "Admin")]
@@ -61,14 +74,7 @@ namespace Cinema.Controllers
                 return View(model);
             }
 
-            var session = new Session
-            {
-                Id = Guid.NewGuid(),
-                MovieId = model.MovieId,
-                HallId = model.HallId,
-                StartTime = model.StartTime,
-                EndTime = model.EndTime
-            };
+            var session = _mapper.Map<Session>(model);  // Перетворюємо з ViewModel в модель
 
             await _unitOfWork.Sessions.AddAsync(session);
             await _unitOfWork.SaveAsync();
@@ -108,7 +114,6 @@ namespace Cinema.Controllers
             return RedirectToAction("ManageTickets", "Home", new { sessionId = session.Id });
         }
 
-
         // 📌 Форма редагування сеансу
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> EditSession(Guid id)
@@ -142,16 +147,15 @@ namespace Cinema.Controllers
             return View(session);
         }
 
-
-
         // 📌 Оновлення сеансу
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> EditSession(Guid id, Session session)
+        public async Task<IActionResult> EditSession(Guid id, SessionDTO sessionDTO)
         {
-            if (id != session.Id) return NotFound();
+            if (id != sessionDTO.Id) return NotFound();
 
+            var session = _mapper.Map<Session>(sessionDTO);  // Перетворюємо DTO в модель
             await _unitOfWork.Sessions.UpdateAsync(session);
             await _unitOfWork.SaveAsync();
             return RedirectToAction("ManageTickets", "Home", new { sessionId = session.Id });

@@ -1,4 +1,4 @@
-﻿@model Cinema.Models.DataBaseModels.Session
+﻿@model Cinema.DTOs.SessionDTO
 
 @{
     ViewData["Title"] = "Session Details";
@@ -6,8 +6,8 @@
 
 <h2>Session Details</h2>
 
-<p><strong>Movie:</strong> @Model.Movie.Title</p>
-<p><strong>Hall:</strong> @Model.Hall.Name</p>
+<p><strong>Movie:</strong> @Model.MovieTitle</p>
+<p><strong>Hall:</strong> @Model.HallName</p>
 <p><strong>Start Time:</strong> @Model.StartTime</p>
 <p><strong>End Time:</strong> @Model.EndTime</p>
 

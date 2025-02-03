@@ -1,7 +1,11 @@
-﻿using Cinema.Models.DataBaseModels;
+﻿using AutoMapper;
+using Cinema.Models.DataBaseModels;
+using Cinema.DTOs;
 using Cinema.Models.ViewModels;
 using Cinema.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Cinema.Controllers
@@ -9,17 +13,20 @@ namespace Cinema.Controllers
     public class MoviesController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public MoviesController(IUnitOfWork unitOfWork)
+        public MoviesController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         // Сторінка зі списком фільмів
         public async Task<IActionResult> Movies()
         {
             var movies = await _unitOfWork.Movies.GetAllAsync();
-            return View(movies);
+            var movieDTOs = _mapper.Map<List<MovieDTO>>(movies);
+            return View(movieDTOs);
         }
 
         // Сторінка для додавання нового фільму
@@ -30,16 +37,17 @@ namespace Cinema.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateMovie(Movie movie)
+        public async Task<IActionResult> CreateMovie(MovieDTO movieDTO)
         {
             if (ModelState.IsValid)
             {
-                movie.Id = Guid.NewGuid(); // Генерація нового ID для фільму
+                var movie = _mapper.Map<Movie>(movieDTO);
+                movie.Id = Guid.NewGuid(); // Генерація нового ID
                 await _unitOfWork.Movies.AddAsync(movie);
                 await _unitOfWork.SaveAsync();
-                return RedirectToAction("Movies", "Home");
+                return RedirectToAction("Movies","Home");
             }
-            return View(movie);
+            return View(movieDTO);
         }
 
         // Сторінка для редагування фільму
@@ -50,25 +58,27 @@ namespace Cinema.Controllers
             {
                 return NotFound();
             }
-            return View(movie);
+            var movieDTO = _mapper.Map<MovieDTO>(movie);
+            return View(movieDTO);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditMovie(Guid id, Movie movie)
+        public async Task<IActionResult> EditMovie(Guid id, MovieDTO movieDTO)
         {
-            if (id != movie.Id)
+            if (id != movieDTO.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
+                var movie = _mapper.Map<Movie>(movieDTO);
                 await _unitOfWork.Movies.UpdateAsync(movie);
                 await _unitOfWork.SaveAsync();
-                return RedirectToAction("Movies", "Home");
+                return RedirectToAction("Movies","Home");
             }
-            return View(movie);
+            return View(movieDTO);
         }
 
         // Видалення фільму
@@ -79,7 +89,8 @@ namespace Cinema.Controllers
             {
                 return NotFound();
             }
-            return View(movie);
+            var movieDTO = _mapper.Map<MovieDTO>(movie);
+            return View(movieDTO);
         }
 
         [HttpPost, ActionName("DeleteMovie")]
@@ -89,14 +100,11 @@ namespace Cinema.Controllers
             var movie = await _unitOfWork.Movies.GetByIdAsync(id);
             if (movie != null)
             {
-                // Замість одночасного збереження, спочатку видаляйте, а потім збережіть
                 await _unitOfWork.Movies.DeleteAsync(id);
-
-                await _unitOfWork.SaveAsync();  // Викликається після завершення всіх операцій
+                await _unitOfWork.SaveAsync();
             }
-            return RedirectToAction("Movies", "Home"); // Повертає до списку фільмів
+            return RedirectToAction("Movies", "Home");
         }
-
 
         // Сторінка з деталями фільму
         public async Task<IActionResult> DetailsMovie(Guid id)
@@ -111,13 +119,11 @@ namespace Cinema.Controllers
 
             var viewModel = new MovieDetailsViewModel
             {
-                Movie = movie,
+                Movie = _mapper.Map<MovieDTO>(movie),
                 Sessions = sessions
             };
 
             return View(viewModel);
         }
-
-
     }
 }
