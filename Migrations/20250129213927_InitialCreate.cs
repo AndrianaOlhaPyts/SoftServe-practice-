@@ -216,8 +216,7 @@ namespace Cinema.Migrations
                     MovieId = table.Column<Guid>(type: "uuid", nullable: false),
                     HallId = table.Column<Guid>(type: "uuid", nullable: false),
                     StartTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    EndTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    TicketPrice = table.Column<decimal>(type: "numeric", nullable: false)
+                    EndTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {

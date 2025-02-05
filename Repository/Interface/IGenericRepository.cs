@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Cinema.Repositories
+namespace Cinema.Repository.Interface
 {
     public interface IGenericRepository<T> where T : class
     {

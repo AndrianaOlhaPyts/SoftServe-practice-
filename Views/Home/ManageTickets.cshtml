@@ -1,0 +1,151 @@
+﻿@model IEnumerable<Cinema.Models.DataBaseModels.Ticket>
+
+@{
+    ViewData["Title"] = "Manage Tickets";
+}
+
+<h2>Manage Tickets</h2>
+
+<div class="hall-layout">
+    @foreach (var row in Model.GroupBy(t => t.Seat.RowId).OrderBy(g => g.Key))
+    {
+        <div class="row-layout">
+            @foreach (var ticket in row.OrderBy(t => t.Seat.SeatNumber))
+            {
+                <div class="seat @(ticket.Seat.SeatType.ToLower())" data-ticket-id="@ticket.Id">
+                    <span>@ticket.Seat.SeatNumber</span>
+                    <input type="number" class="price-input" data-ticket-id="@ticket.Id" value="@ticket.Price" />
+                </div>
+
+                @* Додаємо більший проміжок між VIP-місцями *@
+                @if (ticket.Seat.SeatType.ToLower() == "vip")
+                {
+                    <div class="vip-gap"></div>
+                }
+            }
+        </div>
+    }
+</div>
+
+<!-- Кнопка для збереження всіх змін -->
+<button id="create-ticket-btn">Save</button>
+
+<div class="screen-container">
+    <div class="screen">Екран</div>
+</div>
+
+<style>
+    .hall-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* Збільшено відстань між рядами */
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .row-layout {
+        display: flex;
+        gap: 10px; /* Збільшено проміжок між місцями */
+        align-items: center;
+    }
+
+    .seat {
+        width: 50px;  /* Збільшено ширину */
+        height: 50px; /* Збільшено висоту */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 2px solid black;
+        font-size: 16px; /* Збільшено шрифт */
+        padding: 5px;
+    }
+
+    .standard { background-color: lightgray; }
+    .vip { background-color: gold; }
+    .disabled { background-color: blue; }
+
+    .price-input {
+        width: 50px; /* Збільшено ширину */
+        height: 30px; /* Збільшено висоту */
+        font-size: 10px; /* Збільшено шрифт */
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    /* Додаємо більший проміжок між VIP-місцями */
+    .vip-gap {
+        width: 30px; /* Більший відступ */
+    }
+
+    /* Контейнер для екрану, щоб вирівняти по центру */
+    .screen-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .screen {
+        width: 50%;
+        height: 40px; /* Збільшено висоту */
+        background-color: black;
+        color: white;
+        text-align: center;
+        font-size: 20px; /* Збільшено шрифт */
+        font-weight: bold;
+        margin-top: 30px;
+        border-radius: 8px;
+        line-height: 40px; /* Вирівняно текст по вертикалі */
+    }
+</style>
+
+<script>
+    // Додаємо обробник події для кнопки "Save"
+    document.getElementById("create-ticket-btn").addEventListener("click", async () => {
+        // Збираємо всі зміни
+        const ticketUpdates = [];
+        let isValid = true;
+
+        document.querySelectorAll(".price-input").forEach(input => {
+            const ticketId = input.getAttribute("data-ticket-id");
+            const price = parseFloat(input.value);
+            
+            // Перевіряємо, чи ціна більше за 0
+            if (price <= 0) {
+                isValid = false;
+                input.style.borderColor = "red"; // Відмічаємо неправильну ціну
+            } else {
+                input.style.borderColor = ""; // Якщо ціна коректна, скидаємо стиль
+            }
+
+            // Додаємо об'єкт із змінами для кожного сидіння
+            ticketUpdates.push({
+                ticketId: ticketId,
+                price: price
+            });
+        });
+
+        if (!isValid) {
+            alert("Please ensure all prices are greater than 0.");
+            return; // Перериваємо дію, якщо є некоректні ціни
+        }
+
+        // Відправляємо всі зміни на сервер
+        const response = await fetch('/Tickets/UpdatePrices', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify(ticketUpdates)
+        });
+
+        if (response.ok) {
+            alert("All prices updated successfully!");
+            window.location.href = '/Home/Sessions'; // Перенаправлення на сторінку із сеансами після успішного збереження
+        } else {
+            alert("Error updating prices.");
+        }
+    });
+</script>

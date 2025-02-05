@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Cinema.Data;
 using Cinema.Models.DataBaseModels;
+using Cinema.Repository.Interface;
 
 namespace Cinema.Repositories
 {
@@ -12,20 +13,20 @@ namespace Cinema.Repositories
         {
             _context = context;
             Movies = new MovieRepository(_context);
-            Halls = new GenericRepository<Hall>(_context);
+            Halls = new HallRepository(_context);
             Rows = new GenericRepository<Row>(_context);
-            Seats = new GenericRepository<Seat>(_context);
-            Sessions = new GenericRepository<Session>(_context);
-            Tickets = new GenericRepository<Ticket>(_context);
+            Seats = new SeatRepository(_context);
+            Sessions = new SessionRepository(_context);
+            Tickets = new TicketRepository(_context);
             SalesStatistics = new GenericRepository<SalesStatistics>(_context);
         }
 
         public IMovieRepository Movies { get; private set; }
-        public IGenericRepository<Hall> Halls { get; private set; }
+        public IHallRepository Halls { get; private set; }
         public IGenericRepository<Row> Rows { get; private set; }
-        public IGenericRepository<Seat> Seats { get; private set; }
-        public IGenericRepository<Session> Sessions { get; private set; }
-        public IGenericRepository<Ticket> Tickets { get; private set; }
+        public ISeatRepository Seats { get; private set; }
+        public ISessionRepository Sessions { get; private set; }
+        public ITicketRepository Tickets { get; private set; }
         public IGenericRepository<SalesStatistics> SalesStatistics { get; private set; }
 
         public async Task SaveAsync()

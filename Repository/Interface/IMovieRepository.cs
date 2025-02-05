@@ -1,6 +1,6 @@
 ﻿using Cinema.Models.DataBaseModels;
 
-namespace Cinema.Repositories
+namespace Cinema.Repository.Interface
 {
     public interface IMovieRepository : IGenericRepository<Movie>
     {

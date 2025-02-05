@@ -156,7 +156,7 @@ namespace Cinema.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("EndTime")
+                    b.Property<DateTimeOffset>("EndTime")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("HallId")
@@ -165,11 +165,8 @@ namespace Cinema.Migrations
                     b.Property<Guid>("MovieId")
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("StartTime")
+                    b.Property<DateTimeOffset>("StartTime")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<decimal>("TicketPrice")
-                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
@@ -580,8 +577,7 @@ namespace Cinema.Migrations
 
             modelBuilder.Entity("Cinema.Models.DataBaseModels.Session", b =>
                 {
-                    b.Navigation("SalesStatistics")
-                        .IsRequired();
+                    b.Navigation("SalesStatistics");
 
                     b.Navigation("Tickets");
                 });

@@ -1,9 +1,9 @@
 ﻿using Cinema.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using Cinema.Repositories;
 using Cinema.Data;
 using Cinema.Models.DataBaseModels;
+using Cinema.Repository.Interface;
 
 namespace Cinema.Controllers
 {
@@ -18,9 +18,18 @@ namespace Cinema.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var today = DateTime.UtcNow;
+            var sessions = await _unitOfWork.Sessions.GetAllSessionsAsync();
+
+            var upcomingSessions = sessions
+                .Where(s => s.StartTime > today)
+                .OrderBy(s => s.StartTime)
+                .GroupBy(s => s.Movie)
+                .ToList();
+
+            return View(upcomingSessions);
         }
 
         public IActionResult Privacy()
@@ -33,7 +42,21 @@ namespace Cinema.Controllers
             var movies = await _unitOfWork.Movies.GetAllAsync(); // Очікуємо результат
             return View(movies); // Передаємо результат у вигляд
         }
+        public async Task<IActionResult> Sessions()
+        {
+            var sessions = await _unitOfWork.Sessions.GetAllSessionsAsync(); // Очікуємо результат
+            return View(sessions); // Передаємо результат у вигляд
+        }
+        public async Task<IActionResult> ManageTickets(Guid sessionId)
+        {
+            var tickets = await _unitOfWork.Tickets.GetTicketsBySessionIdAsync(sessionId);
+            if (tickets == null || !tickets.Any())
+            {
+                return NotFound("Квитки не знайдено.");
+            }
 
+            return View(tickets);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
