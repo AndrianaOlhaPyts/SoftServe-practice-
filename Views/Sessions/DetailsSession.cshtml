@@ -15,3 +15,8 @@
 <a href="@Url.Action("ManageTickets", "Home", new { sessionId = Model.Id })" class="btn btn-primary">
     Manage Tickets
 </a>
+
+<!-- Кнопка для переходу на сторінку купівлі квитків для клієнта -->
+<a href="@Url.Action("ClientManageTickets", "Tickets", new { sessionId = Model.Id })" class="btn btn-primary">
+    Buy Tickets
+</a>

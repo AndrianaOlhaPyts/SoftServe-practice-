@@ -1,0 +1,146 @@
+﻿@model IEnumerable<Cinema.Models.DataBaseModels.Ticket>
+
+@{
+    ViewData["Title"] = "Select Seats";
+}
+
+<h2>Select Seats</h2>
+
+<div class="hall-layout">
+    @foreach (var row in Model.GroupBy(t => t.Seat.RowId).OrderBy(g => g.Key))
+    {
+        <div class="row-layout">
+            @foreach (var ticket in row.OrderBy(t => t.Seat.SeatNumber))
+            {
+                <div class="seat @(ticket.Seat.SeatType.ToLower()) @(ticket.IsSelected ? "selected" : "")"
+                     data-ticket-id="@ticket.Id"
+                     data-seat-number="@ticket.Seat.SeatNumber"
+                     data-seat-type="@ticket.Seat.SeatType">
+                    <span>@ticket.Seat.SeatNumber</span>
+                </div>
+
+                @* Додаємо більший проміжок між VIP-місцями *@
+                @if (ticket.Seat.SeatType.ToLower() == "vip")
+                {
+                    <div class="vip-gap"></div>
+                }
+            }
+        </div>
+    }
+</div>
+
+<!-- Кнопка для підтвердження вибору -->
+<button id="confirm-selection-btn">Confirm Selection</button>
+
+<div class="screen-container">
+    <div class="screen">Екран</div>
+</div>
+
+<style>
+    .hall-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* Збільшено відстань між рядами */
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .row-layout {
+        display: flex;
+        gap: 10px; /* Збільшено проміжок між місцями */
+        align-items: center;
+    }
+
+    .seat {
+        width: 50px;  /* Збільшено ширину */
+        height: 50px; /* Збільшено висоту */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 2px solid black;
+        font-size: 16px; /* Збільшено шрифт */
+        padding: 5px;
+    }
+
+    .standard { background-color: lightgray; }
+    .vip { background-color: gold; }
+    .disabled { background-color: blue; }
+    .selected { background-color: lightgreen; }
+
+    .vip-gap {
+        width: 30px; /* Більший відступ */
+    }
+
+    .screen-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .screen {
+        width: 50%;
+        height: 40px; /* Збільшено висоту */
+        background-color: black;
+        color: white;
+        text-align: center;
+        font-size: 20px; /* Збільшено шрифт */
+        font-weight: bold;
+        margin-top: 30px;
+        border-radius: 8px;
+        line-height: 40px; /* Вирівняно текст по вертикалі */
+    }
+</style>
+
+<script>
+    // Додаємо обробник події для вибору місць
+    document.querySelectorAll(".seat").forEach(seat => {
+        seat.addEventListener("click", function () {
+            const seatId = this.getAttribute("data-ticket-id");
+            const seatNumber = this.getAttribute("data-seat-number");
+            const seatType = this.getAttribute("data-seat-type");
+
+            // Перевіряємо, чи місце вже вибрано
+            if (this.classList.contains("selected")) {
+                this.classList.remove("selected");
+            } else {
+                this.classList.add("selected");
+            }
+        });
+    });
+
+    // Обробник для кнопки "Confirm Selection"
+    document.getElementById("confirm-selection-btn").addEventListener("click", async () => {
+        const selectedSeats = [];
+        document.querySelectorAll(".seat.selected").forEach(seat => {
+            selectedSeats.push({
+                ticketId: seat.getAttribute("data-ticket-id"),
+                seatNumber: seat.getAttribute("data-seat-number"),
+                seatType: seat.getAttribute("data-seat-type")
+            });
+        });
+
+        if (selectedSeats.length === 0) {
+            alert("Please select at least one seat.");
+            return;
+        }
+
+        // Відправляємо вибрані місця на сервер
+        const response = await fetch('/Tickets/ConfirmSelection', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(selectedSeats)
+        });
+
+        if (response.ok) {
+            alert("Selection confirmed!");
+            window.location.href = '/Home/Sessions'; // Перенаправлення після підтвердження вибору
+        } else {
+            alert("Error confirming selection.");
+        }
+    });
+</script>
