@@ -29,6 +29,9 @@ builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
+// Реєстрація DatabaseInitializer
+builder.Services.AddScoped<DatabaseInitializer>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -40,6 +43,7 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<CinemaContext>();
     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
     var userManager = services.GetRequiredService<UserManager<User>>();
+    var databaseInitializer = services.GetRequiredService<DatabaseInitializer>();
 
     await context.Database.MigrateAsync(); // Автоматичне застосування міграцій
 
@@ -61,7 +65,7 @@ using (var scope = app.Services.CreateScope())
     {
         adminUser = new User { UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
         var result = await userManager.CreateAsync(adminUser, adminPassword);
-        
+
         if (result.Succeeded)
         {
             await userManager.AddToRoleAsync(adminUser, adminRole);
@@ -71,6 +75,9 @@ using (var scope = app.Services.CreateScope())
     {
         await userManager.AddToRoleAsync(adminUser, adminRole);
     }
+
+    // Ініціалізація бази даних (запуск DatabaseInitializer)
+    await databaseInitializer.InitializeAsync();
 }
 
 // Налаштування середовища
