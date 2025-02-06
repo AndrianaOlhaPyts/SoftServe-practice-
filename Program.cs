@@ -17,7 +17,7 @@ builder.Services.AddDbContext<CinemaContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 // Додаємо підтримку ролей
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>() // Додаємо підтримку ролей
     .AddEntityFrameworkStores<CinemaContext>();
 

@@ -1,28 +1,44 @@
-﻿@model IEnumerable<Cinema.Models.DataBaseModels.Ticket>
+﻿@{
+    ViewData["Title"] = "Payment";
+    var totalPrice = ViewData["TotalPrice"];
+}
 
 <h2>Payment</h2>
+<div>
+    Total amount to pay: @totalPrice$
+</div>
 
-<table>
-    <tr>
-        <th>Seat Number</th>
-        <th>Type</th>
-        <th>Price</th>
-    </tr>
-    @foreach (var ticket in Model)
-    {
-        <tr>
-            <td>@ticket.Seat.SeatNumber</td>
-            <td>@ticket.Seat.SeatType</td>
-            <td>@ticket.Price$</td>
-        </tr>
-    }
-</table>
-
-<button id="pay-btn">Pay Now</button>
+<!-- Форма для підтвердження оплати -->
+<form id="paymentForm">
+    <input type="hidden" id="ticketIds" />
+    <button type="submit">Confirm Payment</button>
+</form>
 
 <script>
-    document.getElementById("pay-btn").addEventListener("click", function () {
-        alert("Payment successful!"); // Тут можна реалізувати реальний платіжний механізм
-        window.location.href = '/Home/Index';
+        document.getElementById("paymentForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const ticketIds = [];  // Selected tickets
+
+        document.querySelectorAll(".seat.selected").forEach(seat => {
+            ticketIds.push(seat.getAttribute("data-ticket-id"));
+        });
+
+        const response = await fetch('/Tickets/ProcessPayment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ TicketIds: ticketIds, Amount: parseFloat(totalPrice) })
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            alert("Payment successful!");
+            location.reload();
+        } else {
+            alert("Payment failed.");
+        }
     });
+
 </script>

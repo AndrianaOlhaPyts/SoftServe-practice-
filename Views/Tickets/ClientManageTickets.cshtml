@@ -12,15 +12,16 @@
         <div class="row-layout">
             @foreach (var ticket in row.OrderBy(t => t.Seat.SeatNumber))
             {
-                <div class="seat @(ticket.Seat.SeatType.ToLower()) @(ticket.IsSelected ? "selected" : "")"
+                <div class="seat @(ticket.Seat.SeatType.ToLower()) @(ticket.IsBooked ? "booked" : "") @(ticket.IsSelected ? "selected" : "")"
                      data-ticket-id="@ticket.Id"
                      data-seat-number="@ticket.Seat.SeatNumber"
-                     data-seat-type="@ticket.Seat.SeatType">
+                     data-seat-type="@ticket.Seat.SeatType"
+                     data-price="@ticket.Price">
                     <span>@ticket.Seat.SeatNumber</span>
-                    <span class="ticket-price">@ticket.Price$</span> <!-- Додаємо відображення ціни -->
+                    <span class="ticket-price">@ticket.Price$</span>
                 </div>
 
-                @* Додаємо більший проміжок між VIP-місцями *@
+                @* Add gap between VIP seats *@
                 @if (ticket.Seat.SeatType.ToLower() == "vip")
                 {
                     <div class="vip-gap"></div>
@@ -30,11 +31,17 @@
     }
 </div>
 
-<!-- Кнопка для підтвердження вибору -->
-<button id="confirm-selection-btn">Confirm Selection</button>
 
 <div class="screen-container">
     <div class="screen">Екран</div>
+</div>
+
+
+<!-- Кнопка для підтвердження вибору -->
+<button id="confirm-selection-btn">Confirm Selection</button>
+
+<div class="total-price">
+    Total Price: <span id="totalPrice">0</span>$
 </div>
 
 <style>
@@ -73,6 +80,11 @@
         margin-top: 5px;
     }
 
+    .booked {
+        background-color: red !important;
+        cursor: not-allowed;
+    }
+
     .standard { background-color: lightgray; }
     .vip { background-color: gold; }
     .disabled { background-color: blue; }
@@ -103,30 +115,31 @@
 </style>
 
 <script>
-    // Додаємо обробник події для вибору місць
-    document.querySelectorAll(".seat").forEach(seat => {
+    document.querySelectorAll(".seat:not(.booked)").forEach(seat => {
         seat.addEventListener("click", function () {
-            const seatId = this.getAttribute("data-ticket-id");
-            const seatNumber = this.getAttribute("data-seat-number");
-            const seatType = this.getAttribute("data-seat-type");
+            const seatPrice = parseFloat(this.getAttribute("data-price"));
 
-            // Перевіряємо, чи місце вже вибрано
             if (this.classList.contains("selected")) {
                 this.classList.remove("selected");
+                updateTotalPrice(-seatPrice);
             } else {
                 this.classList.add("selected");
+                updateTotalPrice(seatPrice);
             }
         });
     });
 
-    // Обробник для кнопки "Confirm Selection"
+    function updateTotalPrice(priceChange) {
+        let totalPrice = parseFloat(document.getElementById("totalPrice").innerText);
+        totalPrice += priceChange;
+        document.getElementById("totalPrice").innerText = totalPrice.toFixed(2);
+    }
+
     document.getElementById("confirm-selection-btn").addEventListener("click", async () => {
         const selectedSeats = [];
         document.querySelectorAll(".seat.selected").forEach(seat => {
             selectedSeats.push({
                 ticketId: seat.getAttribute("data-ticket-id"),
-                seatNumber: seat.getAttribute("data-seat-number"),
-                seatType: seat.getAttribute("data-seat-type")
             });
         });
 
@@ -135,7 +148,6 @@
             return;
         }
 
-        // Відправляємо вибрані місця на сервер
         const response = await fetch('/Tickets/ConfirmSelection', {
             method: 'POST',
             headers: {
@@ -144,11 +156,13 @@
             body: JSON.stringify(selectedSeats)
         });
 
-        if (response.ok) {
-            alert("Selection confirmed!");
-            window.location.href = '/Home/Sessions'; // Перенаправлення після підтвердження вибору
+        const result = await response.json();
+        if (result.success) {
+            alert("Seats booked successfully!");
+            location.reload();
         } else {
-            alert("Error confirming selection.");
+            alert("Some seats were already booked. Please select again.");
+            location.reload();
         }
     });
 </script>

@@ -15,8 +15,24 @@
       "RelativeMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|solutionrelative:views\\tickets\\clientmanagetickets.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|c:\\users\\user\\source\\repos\\softserve-practice-\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|solutionrelative:views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|c:\\users\\user\\source\\repos\\softserve-practice-\\models\\databasemodels\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|solutionrelative:models\\databasemodels\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|c:\\users\\user\\source\\repos\\softserve-practice-\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|c:\\users\\user\\source\\repos\\softserve-practice-\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|solutionrelative:views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|c:\\users\\user\\source\\repos\\softserve-practice-\\views\\sessions\\detailssession.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|solutionrelative:views\\sessions\\detailssession.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|c:\\users\\user\\source\\repos\\softserve-practice-\\views\\home\\managetickets.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -30,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,20 +66,115 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ClientManageTickets.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Views\\Tickets\\ClientManageTickets.cshtml",
+              "RelativeDocumentMoniker": "Views\\Tickets\\ClientManageTickets.cshtml",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Views\\Tickets\\ClientManageTickets.cshtml",
+              "RelativeToolTip": "Views\\Tickets\\ClientManageTickets.cshtml",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAAABwAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-06T13:52:01.079Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_LoginPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_LoginPartial.cshtml",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_LoginPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-06T20:28:47.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Payment.cshtml",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Views\\Tickets\\Payment.cshtml",
               "RelativeDocumentMoniker": "Views\\Tickets\\Payment.cshtml",
               "ToolTip": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Views\\Tickets\\Payment.cshtml",
               "RelativeToolTip": "Views\\Tickets\\Payment.cshtml",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAmwBwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAADwvyoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-02-06T16:07:27.604Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TicketsController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Controllers\\TicketsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TicketsController.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Controllers\\TicketsController.cs",
+              "RelativeToolTip": "Controllers\\TicketsController.cs",
+              "ViewState": "AgIAAIsAAAAAAAAAAADwv6cAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-06T13:52:36.13Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "Ticket.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Models\\DataBaseModels\\Ticket.cs",
+              "RelativeDocumentMoniker": "Models\\DataBaseModels\\Ticket.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Models\\DataBaseModels\\Ticket.cs",
+              "RelativeToolTip": "Models\\DataBaseModels\\Ticket.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-06T16:23:14.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABMAAABjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-06T13:45:44.731Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-06T20:29:28.715Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DetailsSession.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Views\\Sessions\\DetailsSession.cshtml",
+              "RelativeDocumentMoniker": "Views\\Sessions\\DetailsSession.cshtml",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Views\\Sessions\\DetailsSession.cshtml",
+              "RelativeToolTip": "Views\\Sessions\\DetailsSession.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-06T16:08:55.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "ManageTickets.cshtml",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Views\\Home\\ManageTickets.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\ManageTickets.cshtml",
@@ -72,48 +183,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-02-06T14:45:51.65Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TicketsController.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Controllers\\TicketsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TicketsController.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Controllers\\TicketsController.cs*",
-              "RelativeToolTip": "Controllers\\TicketsController.cs*",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAmwHUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T13:52:36.13Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ClientManageTickets.cshtml",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Views\\Tickets\\ClientManageTickets.cshtml",
-              "RelativeDocumentMoniker": "Views\\Tickets\\ClientManageTickets.cshtml",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Views\\Tickets\\ClientManageTickets.cshtml",
-              "RelativeToolTip": "Views\\Tickets\\ClientManageTickets.cshtml",
-              "ViewState": "AgIAAIkAAAAAAAAAAAAmwKMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-06T13:52:01.079Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAmwGsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T13:45:44.731Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             }
           ]
         },

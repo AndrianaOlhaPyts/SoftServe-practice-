@@ -902,4 +902,4 @@ C:\Users\User\source\repos\SoftServe-practice-\obj\Debug\net6.0\refint\Cinema.dl
 C:\Users\User\source\repos\SoftServe-practice-\obj\Debug\net6.0\Cinema.pdb
 C:\Users\User\source\repos\SoftServe-practice-\obj\Debug\net6.0\Cinema.genruntimeconfig.cache
 C:\Users\User\source\repos\SoftServe-practice-\obj\Debug\net6.0\ref\Cinema.dll
-C:\Users\User\source\repos\SoftServe-practice-\obj\Debug\net6.0\staticwebassets.upToDateCheck.txt
+C:\Users\User\Source\Repos\SoftServe-practice-\obj\Debug\net6.0\staticwebassets.upToDateCheck.txt
