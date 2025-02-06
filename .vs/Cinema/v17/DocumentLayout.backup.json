@@ -3,56 +3,8 @@
   "WorkspaceRootPath": "D:\\Andriana\\SoftServe-practice\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|d:\\andriana\\softserve-practice\\models\\databasemodels\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|solutionrelative:models\\databasemodels\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|d:\\andriana\\softserve-practice\\models\\databasemodels\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|solutionrelative:models\\databasemodels\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|d:\\andriana\\softserve-practice\\models\\databasemodels\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|solutionrelative:models\\databasemodels\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|d:\\andriana\\softserve-practice\\models\\databasemodels\\hall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|solutionrelative:models\\databasemodels\\hall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|d:\\andriana\\softserve-practice\\data\\cinemacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|solutionrelative:data\\cinemacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|d:\\andriana\\softserve-practice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|d:\\andriana\\softserve-practice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|d:\\andriana\\softserve-practice\\models\\databasemodels\\salesstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|solutionrelative:models\\databasemodels\\salesstatistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|d:\\andriana\\softserve-practice\\models\\databasemodels\\row.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|solutionrelative:models\\databasemodels\\row.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|d:\\andriana\\softserve-practice\\models\\databasemodels\\seat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|solutionrelative:models\\databasemodels\\seat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|d:\\andriana\\softserve-practice\\models\\databasemodels\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|solutionrelative:models\\databasemodels\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|d:\\andriana\\softserve-practice\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|d:\\andriana\\softserve-practice\\cinema.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{7BBA012E-846D-46C9-80BA-F89A5B3A6642}|Cinema.csproj|solutionrelative:cinema.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|d:\\andriana\\softserve-practice\\models\\databasemodels\\hall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|solutionrelative:models\\databasemodels\\hall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,8 +14,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Hall.cs",
+              "DocumentMoniker": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Hall.cs",
+              "RelativeDocumentMoniker": "Models\\DataBaseModels\\Hall.cs",
+              "ToolTip": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Hall.cs*",
+              "RelativeToolTip": "Models\\DataBaseModels\\Hall.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T12:14:06.63Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
@@ -87,163 +52,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Hall.cs",
-              "DocumentMoniker": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Hall.cs",
-              "RelativeDocumentMoniker": "Models\\DataBaseModels\\Hall.cs",
-              "ToolTip": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Hall.cs",
-              "RelativeToolTip": "Models\\DataBaseModels\\Hall.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T12:08:05.523Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Movie.cs",
-              "DocumentMoniker": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Movie.cs",
-              "RelativeDocumentMoniker": "Models\\DataBaseModels\\Movie.cs",
-              "ToolTip": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Movie.cs",
-              "RelativeToolTip": "Models\\DataBaseModels\\Movie.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAABRAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T12:08:05.678Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Session.cs",
-              "DocumentMoniker": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Session.cs",
-              "RelativeDocumentMoniker": "Models\\DataBaseModels\\Session.cs",
-              "ToolTip": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Session.cs",
-              "RelativeToolTip": "Models\\DataBaseModels\\Session.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAABFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T12:08:05.682Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Ticket.cs",
-              "DocumentMoniker": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Ticket.cs",
-              "RelativeDocumentMoniker": "Models\\DataBaseModels\\Ticket.cs",
-              "ToolTip": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Ticket.cs",
-              "RelativeToolTip": "Models\\DataBaseModels\\Ticket.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T12:08:05.685Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Andriana\\SoftServe-practice\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "D:\\Andriana\\SoftServe-practice\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-01-27T12:08:05.688Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Andriana\\SoftServe-practice\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\Andriana\\SoftServe-practice\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T12:08:05.691Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "SalesStatistics.cs",
-              "DocumentMoniker": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\SalesStatistics.cs",
-              "RelativeDocumentMoniker": "Models\\DataBaseModels\\SalesStatistics.cs",
-              "ToolTip": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\SalesStatistics.cs",
-              "RelativeToolTip": "Models\\DataBaseModels\\SalesStatistics.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T12:08:05.694Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CinemaContext.cs",
-              "DocumentMoniker": "D:\\Andriana\\SoftServe-practice\\Data\\CinemaContext.cs",
-              "RelativeDocumentMoniker": "Data\\CinemaContext.cs",
-              "ToolTip": "D:\\Andriana\\SoftServe-practice\\Data\\CinemaContext.cs",
-              "RelativeToolTip": "Data\\CinemaContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEgAAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T12:08:05.696Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Row.cs",
-              "DocumentMoniker": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Row.cs",
-              "RelativeDocumentMoniker": "Models\\DataBaseModels\\Row.cs",
-              "ToolTip": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Row.cs",
-              "RelativeToolTip": "Models\\DataBaseModels\\Row.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T12:08:05.698Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Seat.cs",
-              "DocumentMoniker": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Seat.cs",
-              "RelativeDocumentMoniker": "Models\\DataBaseModels\\Seat.cs",
-              "ToolTip": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Seat.cs",
-              "RelativeToolTip": "Models\\DataBaseModels\\Seat.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T12:08:05.701Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "User.cs",
-              "DocumentMoniker": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\User.cs",
-              "RelativeDocumentMoniker": "Models\\DataBaseModels\\User.cs",
-              "ToolTip": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\User.cs",
-              "RelativeToolTip": "Models\\DataBaseModels\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAABOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T12:08:05.704Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\Andriana\\SoftServe-practice\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
-              "ToolTip": "D:\\Andriana\\SoftServe-practice\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Controllers\\HomeController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T12:08:05.708Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Cinema.csproj",
-              "DocumentMoniker": "D:\\Andriana\\SoftServe-practice\\Cinema.csproj",
-              "RelativeDocumentMoniker": "Cinema.csproj",
-              "ToolTip": "D:\\Andriana\\SoftServe-practice\\Cinema.csproj",
-              "RelativeToolTip": "Cinema.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAiwCsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-01-27T12:08:05.717Z"
             }
           ]
         },
