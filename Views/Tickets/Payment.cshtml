@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Cinema.Models.DataBaseModels.Ticket>
+
+<h2>Payment</h2>
+
+<table>
+    <tr>
+        <th>Seat Number</th>
+        <th>Type</th>
+        <th>Price</th>
+    </tr>
+    @foreach (var ticket in Model)
+    {
+        <tr>
+            <td>@ticket.Seat.SeatNumber</td>
+            <td>@ticket.Seat.SeatType</td>
+            <td>@ticket.Price$</td>
+        </tr>
+    }
+</table>
+
+<button id="pay-btn">Pay Now</button>
+
+<script>
+    document.getElementById("pay-btn").addEventListener("click", function () {
+        alert("Payment successful!"); // Тут можна реалізувати реальний платіжний механізм
+        window.location.href = '/Home/Index';
+    });
+</script>

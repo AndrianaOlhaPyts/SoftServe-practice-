@@ -11,10 +11,13 @@
 <p><strong>Start Time:</strong> @Model.StartTime</p>
 <p><strong>End Time:</strong> @Model.EndTime</p>
 
-<!-- Кнопка для переходу на сторінку керування квитками -->
-<a href="@Url.Action("ManageTickets", "Home", new { sessionId = Model.Id })" class="btn btn-primary">
-    Manage Tickets
-</a>
+@if (User.IsInRole("Admin"))
+{
+    <a href="@Url.Action("ManageTickets", "Home", new { sessionId = Model.Id })" class="btn btn-primary">
+        Manage Tickets
+    </a>
+}
+
 
 <!-- Кнопка для переходу на сторінку купівлі квитків для клієнта -->
 <a href="@Url.Action("ClientManageTickets", "Tickets", new { sessionId = Model.Id })" class="btn btn-primary">
