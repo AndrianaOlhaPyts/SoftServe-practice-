@@ -1,5 +1,6 @@
 ﻿using Cinema.Models.DataBaseModels;
 using Cinema.Repository.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Cinema.Controllers
         }
 
         // 📌 Відображення сторінки керування квитками
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ManageTickets(Guid sessionId)
         {
             var tickets = await _unitOfWork.Tickets.GetTicketsBySessionIdAsync(sessionId);

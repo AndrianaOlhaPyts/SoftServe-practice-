@@ -17,6 +17,7 @@
                      data-seat-number="@ticket.Seat.SeatNumber"
                      data-seat-type="@ticket.Seat.SeatType">
                     <span>@ticket.Seat.SeatNumber</span>
+                    <span class="ticket-price">@ticket.Price$</span> <!-- Додаємо відображення ціни -->
                 </div>
 
                 @* Додаємо більший проміжок між VIP-місцями *@
@@ -63,6 +64,13 @@
         border: 2px solid black;
         font-size: 16px; /* Збільшено шрифт */
         padding: 5px;
+    }
+
+    .ticket-price {
+        font-size: 14px;
+        font-weight: bold;
+        color: green;
+        margin-top: 5px;
     }
 
     .standard { background-color: lightgray; }

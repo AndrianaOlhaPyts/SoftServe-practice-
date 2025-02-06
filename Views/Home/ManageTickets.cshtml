@@ -4,6 +4,12 @@
     ViewData["Title"] = "Manage Tickets";
 }
 
+@if (!User.IsInRole("Admin"))
+{
+    <h3>Access Denied</h3>
+    return;
+}
+
 <h2>Manage Tickets</h2>
 
 <div class="hall-layout">

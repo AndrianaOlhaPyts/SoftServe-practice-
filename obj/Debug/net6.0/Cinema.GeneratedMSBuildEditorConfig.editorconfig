@@ -9,97 +9,97 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Cinema
 build_property.RootNamespace = Cinema
-build_property.ProjectDir = C:\Users\User\source\repos\SoftServe-practice-\
+build_property.ProjectDir = C:\Users\User\Source\Repos\SoftServe-practice-\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\User\source\repos\SoftServe-practice-
+build_property.MSBuildProjectDirectory = C:\Users\User\Source\Repos\SoftServe-practice-
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 6.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Home/Index.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Home/ManageTickets.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Home/ManageTickets.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYW5hZ2VUaWNrZXRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Home/Movies.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Home/Movies.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNb3ZpZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Home/Privacy.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Home/Sessions.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Home/Sessions.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXNzaW9ucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Movies/CreateMovie.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Movies/CreateMovie.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVzXENyZWF0ZU1vdmllLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Movies/DeleteMovie.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Movies/DeleteMovie.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVzXERlbGV0ZU1vdmllLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Movies/DetailsMovie.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Movies/DetailsMovie.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVzXERldGFpbHNNb3ZpZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Movies/EditMovie.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Movies/EditMovie.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVzXEVkaXRNb3ZpZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Sessions/CreateSession.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Sessions/CreateSession.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbnNcQ3JlYXRlU2Vzc2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Sessions/DeleteSession.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Sessions/DeleteSession.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbnNcRGVsZXRlU2Vzc2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Sessions/DetailsSession.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Sessions/DetailsSession.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbnNcRGV0YWlsc1Nlc3Npb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Sessions/EditSession.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Sessions/EditSession.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbnNcRWRpdFNlc3Npb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Shared/Error.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Tickets/ClientManageTickets.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Tickets/ClientManageTickets.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0c1xDbGllbnRNYW5hZ2VUaWNrZXRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/_ViewImports.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/_ViewStart.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/SoftServe-practice-/Views/Shared/_Layout.cshtml]
+[C:/Users/User/Source/Repos/SoftServe-practice-/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-2pfaoicsxw
