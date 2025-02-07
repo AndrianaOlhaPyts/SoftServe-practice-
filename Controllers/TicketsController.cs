@@ -130,11 +130,13 @@ namespace Cinema.Controllers
         }
 
 
-        public async Task<IActionResult> Payment(double totalPrice)
+        public async Task<IActionResult> Payment(double totalPrice, string ticketIds)
         {
             ViewData["TotalPrice"] = totalPrice;
-            return View();  // Відображення сторінки оплати
+            ViewData["TicketIds"] = ticketIds;
+            return View();
         }
+
 
         // 📌 Обробка платежу
         [Authorize]
@@ -149,7 +151,7 @@ namespace Cinema.Controllers
 
             if (payment == null || payment.Amount <= 0)
             {
-                return BadRequest("Invalid payment details.");
+                return BadRequest("Некоректні дані платежу.");
             }
 
             foreach (var ticketId in payment.TicketIds)
@@ -157,7 +159,7 @@ namespace Cinema.Controllers
                 var ticket = await _unitOfWork.Tickets.GetByIdAsync(ticketId);
                 if (ticket != null && ticket.UserId == userId)
                 {
-                    ticket.IsPaid = true; // Mark the ticket as paid
+                    ticket.IsPaid = true;
                     await _unitOfWork.Tickets.UpdateAsync(ticket);
                 }
             }
@@ -165,6 +167,7 @@ namespace Cinema.Controllers
             await _unitOfWork.SaveAsync();
             return Ok(new { success = true });
         }
+
 
 
 

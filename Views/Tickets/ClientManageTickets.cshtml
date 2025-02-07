@@ -38,6 +38,9 @@
 
 
 <!-- Кнопка для підтвердження вибору -->
+<button id="pay-btn" style="display:none;">Оплатити</button>
+
+<!-- Кнопка для підтвердження вибору -->
 <button id="confirm-selection-btn">Confirm Selection</button>
 
 <div class="total-price">
@@ -115,17 +118,24 @@
 </style>
 
 <script>
+        let selectedTicketIds = [];
+
     document.querySelectorAll(".seat:not(.booked)").forEach(seat => {
         seat.addEventListener("click", function () {
             const seatPrice = parseFloat(this.getAttribute("data-price"));
+            const ticketId = this.getAttribute("data-ticket-id");
 
             if (this.classList.contains("selected")) {
                 this.classList.remove("selected");
                 updateTotalPrice(-seatPrice);
+                selectedTicketIds = selectedTicketIds.filter(id => id !== ticketId);
             } else {
                 this.classList.add("selected");
                 updateTotalPrice(seatPrice);
+                selectedTicketIds.push(ticketId);
             }
+
+            document.getElementById("pay-btn").style.display = selectedTicketIds.length > 0 ? "block" : "none";
         });
     });
 
@@ -135,34 +145,30 @@
         document.getElementById("totalPrice").innerText = totalPrice.toFixed(2);
     }
 
+    // Підтвердження вибору місць
     document.getElementById("confirm-selection-btn").addEventListener("click", async () => {
-        const selectedSeats = [];
-        document.querySelectorAll(".seat.selected").forEach(seat => {
-            selectedSeats.push({
-                ticketId: seat.getAttribute("data-ticket-id"),
-            });
-        });
-
-        if (selectedSeats.length === 0) {
-            alert("Please select at least one seat.");
+        if (selectedTicketIds.length === 0) {
+            alert("Будь ласка, виберіть хоча б одне місце.");
             return;
         }
 
         const response = await fetch('/Tickets/ConfirmSelection', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(selectedSeats)
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(selectedTicketIds.map(id => ({ ticketId: id })))
         });
 
-        const result = await response.json();
-        if (result.success) {
-            alert("Seats booked successfully!");
-            location.reload();
+        if (response.ok) {
+            alert("Місця вибрано. Тепер можете оплатити.");
+            document.getElementById("pay-btn").style.display = "block";
         } else {
-            alert("Some seats were already booked. Please select again.");
-            location.reload();
+            alert("Помилка під час вибору місць.");
         }
+    });
+
+    // Перенаправлення на сторінку оплати
+    document.getElementById("pay-btn").addEventListener("click", () => {
+        const totalPrice = document.getElementById("totalPrice").innerText;
+        window.location.href = `/Tickets/Payment?totalPrice=${totalPrice}&ticketIds=${selectedTicketIds.join(',')}`;
     });
 </script>

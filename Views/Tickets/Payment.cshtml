@@ -1,44 +1,31 @@
 ﻿@{
-    ViewData["Title"] = "Payment";
+    ViewData["Title"] = "Оплата квитків";
     var totalPrice = ViewData["TotalPrice"];
+    var ticketIds = ViewData["TicketIds"];
 }
 
-<h2>Payment</h2>
-<div>
-    Total amount to pay: @totalPrice$
-</div>
+<h2>Оплата квитків</h2>
 
-<!-- Форма для підтвердження оплати -->
-<form id="paymentForm">
-    <input type="hidden" id="ticketIds" />
-    <button type="submit">Confirm Payment</button>
-</form>
+<p>Сума до оплати: <strong>@totalPrice$</strong></p>
+
+<button id="pay-now-btn">Оплатити</button>
 
 <script>
-        document.getElementById("paymentForm").addEventListener("submit", async (event) => {
-        event.preventDefault();
-
-        const ticketIds = [];  // Selected tickets
-
-        document.querySelectorAll(".seat.selected").forEach(seat => {
-            ticketIds.push(seat.getAttribute("data-ticket-id"));
-        });
-
+    document.getElementById("pay-now-btn").addEventListener("click", async () => {
         const response = await fetch('/Tickets/ProcessPayment', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ TicketIds: ticketIds, Amount: parseFloat(totalPrice) })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                ticketIds: "@ticketIds".split(','),
+                amount: @totalPrice
+            })
         });
 
-        const result = await response.json();
-        if (result.success) {
-            alert("Payment successful!");
-            location.reload();
+        if (response.ok) {
+            alert("Оплата успішна! Ваші місця тепер заброньовані.");
+            window.location.href = "/Tickets/ClientManageTickets";
         } else {
-            alert("Payment failed.");
+            alert("Помилка оплати.");
         }
     });
-
 </script>
