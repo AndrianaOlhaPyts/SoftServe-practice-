@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Sales Statistics";
+}
+
+<h1>Sales Statistics</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Movie</th>
+            <th>Session Date</th>
+            <th>Tickets Sold</th>
+            <th>Revenue</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var stat in Model)
+        {
+            <tr>
+                <td>@stat.Title</td>
+                <td>@stat.StartTime.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@stat.TicketsSold</td>
+                <td>@stat.Revenue</td>
+            </tr>
+        }
+    </tbody>
+</table>
