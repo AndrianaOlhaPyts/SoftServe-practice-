@@ -15,7 +15,5 @@
         public Seat Seat { get; set; } = null!; // Зв'язок із місцем
         public User User { get; set; } = null!; // Зв'язок із користувачем
         public bool IsSelected { get; set; } // Поле для вибору місця
-        public bool IsBooked { get; set; } // Поле для статусу бронювання
-        public bool IsPaid { get; set; } // Поле для стутусу оплати
     }
 }

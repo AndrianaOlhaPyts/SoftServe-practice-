@@ -67,22 +67,20 @@ namespace Cinema.Controllers
 
 
         // 📌 Відображення доступних місць для сеансу
-        [Authorize]
         public async Task<IActionResult> ClientManageTickets(Guid sessionId)
         {
             var tickets = await _unitOfWork.Tickets.GetTicketsBySessionIdAsync(sessionId);
-
             if (tickets == null || !tickets.Any())
             {
                 return NotFound("Квитки не знайдено.");
             }
 
-            return View(tickets);
+            return View(tickets);  // Повертаємо view для клієнта
         }
 
-        // 📌 Підтвердження вибору місць
-        [Authorize]
+        // 📌 Оновлення ціни квитка
         [HttpPost]
+        [Authorize] // Додаємо авторизацію, щоб отримати UserId
         public async Task<IActionResult> ConfirmSelection([FromBody] List<TicketSelectionModel> selectedSeats)
         {
             if (selectedSeats == null || !selectedSeats.Any())
@@ -90,10 +88,11 @@ namespace Cinema.Controllers
                 return BadRequest("No seats selected.");
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the logged-in user's ID
-            if (userId == null)
+            // Отримуємо ID авторизованого користувача
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
             {
-                return Unauthorized("Користувач не авторизований.");
+                return Unauthorized("User not logged in.");
             }
 
             foreach (var selection in selectedSeats)
@@ -104,15 +103,17 @@ namespace Cinema.Controllers
                     return NotFound($"Ticket with ID {selection.TicketId} not found.");
                 }
 
-                // Check if the ticket is already booked
-                if (ticket.IsBooked)
+                // Перевіряємо, чи квиток уже куплений іншим користувачем
+                if (ticket.Status == "paid" && ticket.UserId != userId)
                 {
-                    return Conflict($"Місце {ticket.Seat.SeatNumber} вже заброньоване.");
+                    return BadRequest($"Ticket {selection.TicketId} has already been purchased by another user.");
                 }
 
-                // Update the booking status
-                ticket.IsBooked = true;
-                ticket.UserId = userId; // Bind the booking to the user
+                // Оновлюємо статус квитка та прив'язуємо його до користувача
+                ticket.UserId = userId;
+                ticket.Status = "paid";
+                ticket.IsSelected = true;
+
                 await _unitOfWork.Tickets.UpdateAsync(ticket);
             }
 
@@ -129,52 +130,6 @@ namespace Cinema.Controllers
             public string SeatType { get; set; }
         }
 
-
-        public async Task<IActionResult> Payment(double totalPrice, string ticketIds)
-        {
-            ViewData["TotalPrice"] = totalPrice;
-            ViewData["TicketIds"] = ticketIds;
-            return View();
-        }
-
-
-        // 📌 Обробка платежу
-        [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> ProcessPayment([FromBody] PaymentModel payment)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (userId == null)
-            {
-                return Unauthorized("Користувач не авторизований.");
-            }
-
-            if (payment == null || payment.TicketIds == null || !payment.TicketIds.Any() || payment.Amount <= 0)
-            {
-                return BadRequest("Invalid payment details.");
-            }
-
-            foreach (var ticketId in payment.TicketIds)
-            {
-                var ticket = await _unitOfWork.Tickets.GetByIdAsync(ticketId);
-                if (ticket != null && ticket.UserId == userId && !ticket.IsPaid)
-                {
-                    ticket.IsPaid = true;  // Помічаємо квиток як оплачений
-                    ticket.Status = "sold"; // Оновлюємо статус
-                    await _unitOfWork.Tickets.UpdateAsync(ticket);
-                }
-            }
-
-            await _unitOfWork.SaveAsync();
-            return Ok(new { success = true });
-        }
-
-        // Модель для обробки платежу
-        public class PaymentModel
-        {
-            public List<Guid> TicketIds { get; set; }
-            public double Amount { get; set; }
-        }
-
     }
+
 }
