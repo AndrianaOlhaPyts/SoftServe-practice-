@@ -11,7 +11,7 @@
         "projectName": "Cinema",
         "projectPath": "C:\\Users\\User\\Source\\Repos\\SoftServe-practice-\\Cinema.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Source\\Repos\\SoftServe-practice-\\obj\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

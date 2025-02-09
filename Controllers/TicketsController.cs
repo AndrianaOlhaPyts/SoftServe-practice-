@@ -149,17 +149,18 @@ namespace Cinema.Controllers
                 return Unauthorized("Користувач не авторизований.");
             }
 
-            if (payment == null || payment.Amount <= 0)
+            if (payment == null || payment.TicketIds == null || !payment.TicketIds.Any() || payment.Amount <= 0)
             {
-                return BadRequest("Некоректні дані платежу.");
+                return BadRequest("Invalid payment details.");
             }
 
             foreach (var ticketId in payment.TicketIds)
             {
                 var ticket = await _unitOfWork.Tickets.GetByIdAsync(ticketId);
-                if (ticket != null && ticket.UserId == userId)
+                if (ticket != null && ticket.UserId == userId && !ticket.IsPaid)
                 {
-                    ticket.IsPaid = true;
+                    ticket.IsPaid = true;  // Помічаємо квиток як оплачений
+                    ticket.Status = "sold"; // Оновлюємо статус
                     await _unitOfWork.Tickets.UpdateAsync(ticket);
                 }
             }
@@ -167,9 +168,6 @@ namespace Cinema.Controllers
             await _unitOfWork.SaveAsync();
             return Ok(new { success = true });
         }
-
-
-
 
         // Модель для обробки платежу
         public class PaymentModel

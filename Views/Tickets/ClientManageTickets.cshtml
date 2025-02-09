@@ -12,7 +12,9 @@
         <div class="row-layout">
             @foreach (var ticket in row.OrderBy(t => t.Seat.SeatNumber))
             {
-                <div class="seat @(ticket.Seat.SeatType.ToLower()) @(ticket.IsBooked ? "booked" : "") @(ticket.IsSelected ? "selected" : "")"
+                <div class="seat @(ticket.Seat.SeatType.ToLower())
+            @(ticket.IsBooked ? "booked" : "")
+            @(ticket.IsPaid ? "sold" : "")"
                      data-ticket-id="@ticket.Id"
                      data-seat-number="@ticket.Seat.SeatNumber"
                      data-seat-type="@ticket.Seat.SeatType"
@@ -20,6 +22,7 @@
                     <span>@ticket.Seat.SeatNumber</span>
                     <span class="ticket-price">@ticket.Price$</span>
                 </div>
+
 
                 @* Add gap between VIP seats *@
                 @if (ticket.Seat.SeatType.ToLower() == "vip")
@@ -82,6 +85,13 @@
         color: green;
         margin-top: 5px;
     }
+
+    .sold {
+        background-color: darkred !important;
+        color: white;
+        cursor: not-allowed;
+    }
+
 
     .booked {
         background-color: red !important;
