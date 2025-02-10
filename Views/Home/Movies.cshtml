@@ -1,26 +1,30 @@
-﻿@model IEnumerable<Cinema.Models.DataBaseModels.Movie>
+﻿
+@model IEnumerable<Cinema.Models.DataBaseModels.Movie>
 
-@{
+    @{
     ViewData["Title"] = "Movies";
-}
+    }
 
-<h1>Movies</h1>
+    <h1>Movies</h1>
 
-<p>
-    <a href="@Url.Action("CreateMovie", "Movies")" class="btn btn-primary">Add New Movie</a>
-</p>
+    <p>
+        @if (User.IsInRole("Admin"))
+    {
+        <a href="@Url.Action("CreateMovie", "Movies") " class="btn btn-primary">Add New Movie</a>
+    }
+    </p>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Poster</th>
-            <th>Title</th>
-            <th>Trailer</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var movie in Model)
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Poster</th>
+                <th>Title</th>
+                <th>Trailer</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model)
         {
             <tr>
                 <!-- Poster -->
@@ -44,11 +48,11 @@
                 <td>
                     @if (User.IsInRole("Admin"))
                     {
-                        <a href="@Url.Action("EditMovie", "Movies", new { id = movie.Id })" class="btn btn-warning">Edit</a>
-                        <a href="@Url.Action("DeleteMovie", "Movies", new { id = movie.Id })" class="btn btn-danger">Delete</a>
+                    <a href="@Url.Action("EditMovie", "Movies", new { id = movie.Id })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("DeleteMovie", "Movies", new { id = movie.Id })" class="btn btn-danger">Delete</a>
                     }
                 </td>
             </tr>
         }
-    </tbody>
-</table>
+        </tbody>
+    </table>
