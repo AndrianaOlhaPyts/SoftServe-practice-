@@ -25,10 +25,22 @@ namespace Cinema.Repositories
             return await _dbSet.ToListAsync();
         }
 
+        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? predicate = null)
+        {
+            return predicate == null ? await _dbSet.ToListAsync() : await _dbSet.Where(predicate).ToListAsync();
+        }
+
+
         public async Task<T?> GetByIdAsync(Guid id) // Виправлено сигнатуру
         {
             return await _dbSet.FindAsync(id);
         }
+
+        public async Task<T?> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _dbSet.FirstOrDefaultAsync(predicate);
+        }
+
 
         public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
         {

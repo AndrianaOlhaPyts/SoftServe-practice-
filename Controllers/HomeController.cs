@@ -57,6 +57,12 @@ namespace Cinema.Controllers
 
             return View(tickets);
         }
+        public async Task<IActionResult> CompletedSessions()
+        {
+            var completedSessions = (await _unitOfWork.Sessions.GetAllSessionsAsync())
+                .Where(s => s.EndTime <= DateTime.Now); // Отримуємо всі завершені сеанси
+            return View(completedSessions);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
