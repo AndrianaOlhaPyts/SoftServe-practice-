@@ -11066,11 +11066,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\SoftServe-practice-\\Cinema.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\Cinema\\SoftServe-practice-.git\\Cinema.csproj",
       "projectName": "Cinema",
-      "projectPath": "C:\\Users\\User\\Desktop\\SoftServe-practice-\\Cinema.csproj",
+      "projectPath": "C:\\Users\\User\\Desktop\\Cinema\\SoftServe-practice-.git\\Cinema.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\SoftServe-practice-\\obj\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\Cinema\\SoftServe-practice-.git\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

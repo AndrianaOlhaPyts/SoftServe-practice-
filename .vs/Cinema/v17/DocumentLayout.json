@@ -1,10 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Andriana\\SoftServe-practice\\",
+  "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|d:\\andriana\\softserve-practice\\models\\databasemodels\\hall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|solutionrelative:models\\databasemodels\\hall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|c:\\users\\user\\source\\repos\\softserve-practice-\\views\\tickets\\clientmanagetickets.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|solutionrelative:views\\tickets\\clientmanagetickets.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|c:\\users\\user\\source\\repos\\softserve-practice-\\controllers\\ticketscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|solutionrelative:controllers\\ticketscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|c:\\users\\user\\source\\repos\\softserve-practice-\\models\\databasemodels\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7565BE3E-C38D-4594-A21C-1C358183376E}|Cinema.csproj|solutionrelative:models\\databasemodels\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,21 +22,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Hall.cs",
-              "DocumentMoniker": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Hall.cs",
-              "RelativeDocumentMoniker": "Models\\DataBaseModels\\Hall.cs",
-              "ToolTip": "D:\\Andriana\\SoftServe-practice\\Models\\DataBaseModels\\Hall.cs*",
-              "RelativeToolTip": "Models\\DataBaseModels\\Hall.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T12:14:06.63Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
@@ -47,11 +42,46 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Ticket.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Models\\DataBaseModels\\Ticket.cs",
+              "RelativeDocumentMoniker": "Models\\DataBaseModels\\Ticket.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Models\\DataBaseModels\\Ticket.cs",
+              "RelativeToolTip": "Models\\DataBaseModels\\Ticket.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T21:34:29.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TicketsController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Controllers\\TicketsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TicketsController.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Controllers\\TicketsController.cs",
+              "RelativeToolTip": "Controllers\\TicketsController.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAswG0AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T18:06:48.076Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ClientManageTickets.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Views\\Tickets\\ClientManageTickets.cshtml",
+              "RelativeDocumentMoniker": "Views\\Tickets\\ClientManageTickets.cshtml",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\SoftServe-practice-\\Views\\Tickets\\ClientManageTickets.cshtml",
+              "RelativeToolTip": "Views\\Tickets\\ClientManageTickets.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-09T08:11:45.21Z",
+              "EditorCaption": ""
             }
           ]
         },

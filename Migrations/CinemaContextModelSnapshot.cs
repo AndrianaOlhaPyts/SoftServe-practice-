@@ -183,6 +183,9 @@ namespace Cinema.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<bool>("IsSelected")
+                        .HasColumnType("boolean");
+
                     b.Property<double>("Price")
                         .HasColumnType("double precision");
 

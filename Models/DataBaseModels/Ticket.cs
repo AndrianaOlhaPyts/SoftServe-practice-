@@ -14,5 +14,6 @@
         public Session Session { get; set; } = null!; // Зв'язок із сеансом
         public Seat Seat { get; set; } = null!; // Зв'язок із місцем
         public User User { get; set; } = null!; // Зв'язок із користувачем
+        public bool IsSelected { get; set; } // Поле для вибору місця
     }
 }
