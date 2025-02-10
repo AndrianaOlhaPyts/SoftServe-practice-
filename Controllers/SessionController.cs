@@ -183,5 +183,21 @@ namespace Cinema.Controllers
             await _unitOfWork.SaveAsync();
             return RedirectToAction("Sessions", "Home");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> FilterSessions(double? minRating, DateTime? sessionDate)
+        {
+            var allSessions = await _unitOfWork.Sessions.GetAllSessionsAsync();
+            var sessions = allSessions
+                .Where(s =>
+                    (!minRating.HasValue || s.Movie.Rating >= (decimal)minRating.Value) &&
+                    (!sessionDate.HasValue || s.StartTime.Date == sessionDate.Value.Date))
+                .ToList();
+
+            var groupedSessions = sessions.GroupBy(s => s.Movie).ToList();
+
+            return PartialView("_FilteredSessionsPartial", groupedSessions);
+        }
+
     }
 }
