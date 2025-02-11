@@ -111,7 +111,7 @@ namespace Cinema.Controllers
             await _unitOfWork.SaveAsync();
 
             // 📌 Перенаправляємо на сторінку керування квитками
-            return RedirectToAction("ManageTickets", "Home", new { sessionId = session.Id });
+            return RedirectToAction("ManageTickets","Tickets", new { sessionId = session.Id });
         }
 
         // 📌 Форма редагування сеансу
@@ -158,7 +158,7 @@ namespace Cinema.Controllers
             var session = _mapper.Map<Session>(sessionDTO);  // Перетворюємо DTO в модель
             await _unitOfWork.Sessions.UpdateAsync(session);
             await _unitOfWork.SaveAsync();
-            return RedirectToAction("ManageTickets", "Home", new { sessionId = session.Id });
+            return RedirectToAction("ManageTickets", "Tickets", new { sessionId = session.Id });
         }
 
         // 📌 Видалення сеансу

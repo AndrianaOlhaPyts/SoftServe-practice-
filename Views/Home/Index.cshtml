@@ -24,7 +24,7 @@
     <div id="moviesContainer">
         @foreach (var group in Model)
         {
-            var movie = group.Key;
+            var movie = group.Movie;
             var trailerUrl = movie.TrailerUrl; 
 
             <div class="card mb-4 movie-card" data-rating="@movie.Rating">
@@ -49,7 +49,7 @@
 
                             <h5 class="mt-3">Upcoming Sessions:</h5>
                             <div class="session-list">
-                                @foreach (var session in group)
+                                @foreach (var session in group.Sessions)
                                 {
                                     <p class="session-item" data-date="@session.StartTime.ToString("yyyy-MM-dd")">
                                         <strong>@session.StartTime.ToString("dd MMMM yyyy")</strong>

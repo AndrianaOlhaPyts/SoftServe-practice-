@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Cinema.Models.DataBaseModels.Ticket>
+﻿@model IEnumerable<Cinema.DTOs.TicketDTO>
 
 @{
     ViewData["Title"] = "Select Seats";
@@ -7,9 +7,10 @@
 <h2>Select Seats</h2>
 
 <div class="hall-layout">
-    @foreach (var row in Model.GroupBy(t => t.Seat.RowId).OrderBy(g => g.Key))
+    @foreach (var row in Model.GroupBy(t => t.Seat.Row.Number).OrderBy(g => g.Key))
     {
         <div class="row-layout">
+            <h3>Row @row.Key</h3>  <!-- Додаємо номер ряду -->
             @foreach (var ticket in row.OrderBy(t => t.Seat.SeatNumber))
             {
                 <div class="seat @(ticket.Seat.SeatType.ToLower()) @(ticket.Status == "paid" ? "paid" : "") @(ticket.IsSelected ? "selected" : "")"
@@ -19,8 +20,6 @@
                     <span>@ticket.Seat.SeatNumber</span>
                     <span class="ticket-price">@ticket.Price$</span>
                 </div>
-
-
 
                 @* Додаємо більший проміжок між VIP-місцями *@
                 @if (ticket.Seat.SeatType.ToLower() == "vip")
@@ -52,6 +51,7 @@
         display: flex;
         gap: 10px; /* Збільшено проміжок між місцями */
         align-items: center;
+        flex-wrap: wrap; /* Для адаптивності */
     }
 
     .seat {
@@ -75,7 +75,6 @@
         margin-top: 5px;
     }
 
-
     .standard {
         background-color: lightgray;
     }
@@ -97,7 +96,6 @@
         cursor: not-allowed;
         color: white;
     }
-
 
     .vip-gap {
         width: 30px; /* Більший відступ */
@@ -140,14 +138,14 @@
         });
     });
 
-        // Функція для оновлення стану місць
+    // Функція для оновлення стану місць
     async function refreshSeats() {
         const response = await fetch(window.location.href); // Оновлення сторінки
         const text = await response.text();
         document.body.innerHTML = text; // Перемальовуємо сторінку
     }
 
-        // Обробник кнопки "Confirm Selection"
+    // Обробник кнопки "Confirm Selection"
     document.getElementById("confirm-selection-btn").addEventListener("click", async () => {
         const selectedSeats = [];
         document.querySelectorAll(".seat.selected").forEach(seat => {

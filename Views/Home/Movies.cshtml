@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<Cinema.Models.DataBaseModels.Movie>
+@model IEnumerable<Cinema.DTOs.MovieDTO>
 
     @{
     ViewData["Title"] = "Movies";
@@ -20,7 +20,10 @@
                 <th>Poster</th>
                 <th>Title</th>
                 <th>Trailer</th>
+                @if (User.IsInRole("Admin"))
+                {
                 <th>Actions</th>
+                }
             </tr>
         </thead>
         <tbody>

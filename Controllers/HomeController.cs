@@ -1,9 +1,9 @@
-﻿using Cinema.Models;
+﻿using AutoMapper;
+using Cinema.DTOs;
+using Cinema.Models;
+using Cinema.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using Cinema.Data;
-using Cinema.Models.DataBaseModels;
-using Cinema.Repository.Interface;
 
 namespace Cinema.Controllers
 {
@@ -11,11 +11,13 @@ namespace Cinema.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
@@ -27,6 +29,11 @@ namespace Cinema.Controllers
                 .Where(s => s.StartTime > today)
                 .OrderBy(s => s.StartTime)
                 .GroupBy(s => s.Movie)
+                .Select(group => new
+                {
+                    Movie = _mapper.Map<MovieDTO>(group.Key),
+                    Sessions = _mapper.Map<List<SessionDTO>>(group.ToList())
+                })
                 .ToList();
 
             return View(upcomingSessions);
@@ -39,14 +46,18 @@ namespace Cinema.Controllers
 
         public async Task<IActionResult> Movies()
         {
-            var movies = await _unitOfWork.Movies.GetAllAsync(); // Очікуємо результат
-            return View(movies); // Передаємо результат у вигляд
+            var movies = await _unitOfWork.Movies.GetAllAsync();
+            var movieDTOs = _mapper.Map<List<MovieDTO>>(movies);
+            return View(movieDTOs);
         }
+
         public async Task<IActionResult> Sessions()
         {
-            var sessions = await _unitOfWork.Sessions.GetAllSessionsAsync(); // Очікуємо результат
-            return View(sessions); // Передаємо результат у вигляд
+            var sessions = await _unitOfWork.Sessions.GetAllSessionsAsync();
+            var sessionDTOs = _mapper.Map<List<SessionDTO>>(sessions);
+            return View(sessionDTOs);
         }
+
         public async Task<IActionResult> ManageTickets(Guid sessionId)
         {
             var tickets = await _unitOfWork.Tickets.GetTicketsBySessionIdAsync(sessionId);
@@ -55,13 +66,17 @@ namespace Cinema.Controllers
                 return NotFound("Квитки не знайдено.");
             }
 
-            return View(tickets);
+            var ticketDTOs = _mapper.Map<List<TicketDTO>>(tickets);
+            return View(ticketDTOs);
         }
+
         public async Task<IActionResult> CompletedSessions()
         {
             var completedSessions = (await _unitOfWork.Sessions.GetAllSessionsAsync())
-                .Where(s => s.EndTime <= DateTime.Now); // Отримуємо всі завершені сеанси
-            return View(completedSessions);
+                .Where(s => s.EndTime <= DateTime.Now);
+
+            var completedSessionDTOs = _mapper.Map<List<SessionDTO>>(completedSessions);
+            return View(completedSessionDTOs);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

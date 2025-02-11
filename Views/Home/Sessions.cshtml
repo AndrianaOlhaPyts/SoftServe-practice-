@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Cinema.Models.DataBaseModels.Session>
+﻿@model IEnumerable<Cinema.DTOs.SessionDTO>
 
     @{
     ViewData["Title"] = "Sessions";
@@ -27,8 +27,8 @@
             @foreach (var session in Model)
         {
             <tr>
-                <td>@session.Movie.Title</td>
-                <td>@session.Hall.Name</td>
+                <td>@session.MovieTitle</td>
+                <td>@session.HallName</td>
                 <td>@session.StartTime.ToString("yyyy-MM-dd HH:mm")</td>
                 <td>@session.EndTime.ToString("yyyy-MM-dd HH:mm")</td>
                 <td>

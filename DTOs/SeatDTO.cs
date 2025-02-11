@@ -6,5 +6,7 @@
         public Guid RowId { get; set; }
         public int SeatNumber { get; set; }
         public string SeatType { get; set; } = "standard";
+
+        public virtual RowDTO Row { get; set; } // Navigation property if needed
     }
 }
