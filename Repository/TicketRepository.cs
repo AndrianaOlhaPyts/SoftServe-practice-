@@ -17,6 +17,7 @@ namespace Cinema.Repositories
         {
             return await _context.Tickets
                 .Include(t => t.Seat)
+                .ThenInclude(s => s.Row)
                 .Where(t => t.SessionId == sessionId)
                 .ToListAsync();
         }

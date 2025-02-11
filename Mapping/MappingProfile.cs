@@ -57,7 +57,8 @@ namespace Cinema.Mapping
             CreateMap<SalesStatistics, SalesStatisticsDTO>()
                 .ForMember(dest => dest.TicketsSold, opt => opt.MapFrom(src => src.TicketsSold))
                 .ForMember(dest => dest.Revenue, opt => opt.MapFrom(src => src.Revenue));
-
+            CreateMap<Seat, SeatDTO>()
+                .ForMember(dest => dest.Row, opt => opt.MapFrom(src => src.Row));
         }
     }
 }
