@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Cinema.DTOs.TicketDTO>
+
+@{
+    ViewData["Title"] = "Мої квитки";
+}
+
+<h2>Мої активні квитки</h2>
+
+@if (!Model.Any())
+{
+    <p>У вас немає активних квитків.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Назва фільму</th>
+                <th>Зал</th>
+                <th>Ряд</th>
+                <th>Місце</th>
+                <th>Дата</th>
+                <th>Початок</th>
+                <th>Кінець</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ticket in Model)
+            {
+                <tr>
+                    <td>@ticket.Session.MovieTitle</td>
+                    <td>@ticket.Session.HallName</td>
+                    <td>@ticket.Seat.Row.Number</td>
+                    <td>@ticket.Seat.SeatNumber</td>
+                    <td>@ticket.Session.StartTime.ToString("dd.MM.yyyy")</td>
+                    <td>@ticket.Session.StartTime.ToString("HH:mm")</td>
+                    <td>@ticket.Session.EndTime.ToString("HH:mm")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -4,6 +4,7 @@ using Cinema.Models;
 using Cinema.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace Cinema.Controllers
 {
@@ -77,6 +78,17 @@ namespace Cinema.Controllers
 
             var completedSessionDTOs = _mapper.Map<List<SessionDTO>>(completedSessions);
             return View(completedSessionDTOs);
+        }
+
+        public async Task<IActionResult> Tickets()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Отримуємо ID поточного користувача
+
+            var tickets = await _unitOfWork.Tickets.GetUserActiveTicketsAsync(userId);
+
+            var ticketDTOs = _mapper.Map<List<TicketDTO>>(tickets);
+
+            return View(ticketDTOs);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

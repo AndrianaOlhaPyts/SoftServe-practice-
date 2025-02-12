@@ -117,6 +117,17 @@ namespace Cinema.Controllers
             return Ok(new { success = true });
         }
 
+        public async Task<IActionResult> Tickets()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Отримуємо ID поточного користувача
+
+            var tickets = await _unitOfWork.Tickets.GetUserActiveTicketsAsync(userId);
+
+            var ticketDTOs = _mapper.Map<List<TicketDTO>>(tickets);
+
+            return View(ticketDTOs);
+        }
+
         // Модель для прийому даних вибору місць
         public class TicketSelectionModel
         {

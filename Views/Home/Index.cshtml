@@ -39,7 +39,7 @@
                             </h4>
                             <p><strong>Rating:</strong> @movie.Rating</p>
 
-                            <button class="btn btn-danger" onclick="showTrailer('@trailerUrl')">
+                            <button class="btn btn-danger" onclick="showTrailer('@movie.Id', '@trailerUrl')">
                                 Watch Trailer
                             </button>
 
@@ -68,17 +68,22 @@
 </div>
 
 <script>
-    function showTrailer(url) {
-        let container = document.querySelector(`#trailer-container-${url.split('/').pop()}`);
-        let iframe = container.querySelector("iframe");
-        if (container.style.display === "none") {
-            iframe.src = url.replace("watch?v=", "embed/");
-            container.style.display = "block";
-        } else {
-            iframe.src = "";
-            container.style.display = "none";
-        }
+    function showTrailer(movieId, url) {
+    let container = document.getElementById(`trailer-container-${movieId}`);
+    let iframe = document.getElementById(`trailer-${movieId}`);
+
+    if (container.style.display === "none") {
+        // Заміна на вбудований формат
+        let embedUrl = url.replace("https://youtu.be/", "https://www.youtube.com/embed/");
+        iframe.src = embedUrl;
+        container.style.display = "block";
+    } else {
+        iframe.src = "";
+        container.style.display = "none";
     }
+}
+
+
 
     function applyFilters() {
         let selectedRating = document.getElementById("ratingFilter").value;

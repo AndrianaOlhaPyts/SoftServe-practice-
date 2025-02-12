@@ -15,7 +15,14 @@
     <p><strong>Genre:</strong> @Model.Movie.Genre</p>
     <p><strong>Duration:</strong> @Model.Movie.DurationMinutes minutes</p>
     <p><strong>Rating:</strong> @Model.Movie.Rating</p>
-    <p><a href="@Model.Movie.TrailerUrl" target="_blank" class="btn btn-secondary">Watch Trailer</a></p>
+
+    <!-- Watch Trailer Button and Video Embed -->
+    <button class="btn btn-secondary" onclick="showTrailer('@Model.Movie.TrailerUrl')">Watch Trailer</button>
+
+    <!-- Trailer Container -->
+    <div id="trailer-container" class="mt-2" style="display: none;">
+        <iframe id="trailer-frame" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+    </div>
 </div>
 
 <h2>Sessions</h2>
@@ -43,3 +50,20 @@ else
 {
     <p>No available sessions for this movie.</p>
 }
+
+<script>
+    function showTrailer(url) {
+        var container = document.getElementById("trailer-container");
+        var iframe = document.getElementById("trailer-frame");
+
+        if (container.style.display === "none") {
+            // Заміна на вбудований формат URL
+            var embedUrl = url.replace("https://youtu.be/", "https://www.youtube.com/embed/");
+            iframe.src = embedUrl;
+            container.style.display = "block";
+        } else {
+            iframe.src = "";
+            container.style.display = "none";
+        }
+    }
+</script>

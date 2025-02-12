@@ -42,7 +42,8 @@ namespace Cinema.Mapping
                 .ForMember(dest => dest.SeatNumber, opt => opt.MapFrom(src => src.Seat.SeatNumber)) // Приклад перетворення для Seat
                 .ForMember(dest => dest.SeatId, opt => opt.MapFrom(src => src.SeatId)) // Перетворення SeatId
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status)) // Статус квитка
-                .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price)); // Ціна квитка
+                .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price)) // Ціна квитка
+                .ForMember(dest => dest.Seat, opt => opt.MapFrom(src => src.Seat));
 
             // Перетворення з TicketDTO на Ticket
             CreateMap<TicketDTO, Ticket>()
