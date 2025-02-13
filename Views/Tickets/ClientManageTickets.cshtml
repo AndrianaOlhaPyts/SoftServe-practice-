@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Cinema.Models.DataBaseModels.Ticket>
+﻿@model IEnumerable<Cinema.DTOs.TicketDTO>
 
 @{
     ViewData["Title"] = "Select Seats";
@@ -7,7 +7,7 @@
 <h2>Select Seats</h2>
 
 <div class="hall-layout">
-    @foreach (var row in Model.GroupBy(t => t.Seat.RowId).OrderBy(g => g.Key))
+    @foreach (var row in Model.GroupBy(t => t.Seat.RowId).OrderBy(g => g.First().Seat.Row.Number))
     {
         <div class="row-layout">
             @foreach (var ticket in row.OrderBy(t => t.Seat.SeatNumber))
@@ -19,8 +19,6 @@
                     <span>@ticket.Seat.SeatNumber</span>
                     <span class="ticket-price">@ticket.Price$</span>
                 </div>
-
-
 
                 @* Додаємо більший проміжок між VIP-місцями *@
                 @if (ticket.Seat.SeatType.ToLower() == "vip")
@@ -42,21 +40,21 @@
 <style>
     .hall-layout {
         display: flex;
-        flex-direction: column;
-        gap: 10px; /* Збільшено відстань між рядами */
+        flex-direction: column-reverse; /* Реверсуємо порядок рядів */
+        gap: 10px;
         align-items: center;
         margin-bottom: 30px;
     }
 
     .row-layout {
         display: flex;
-        gap: 10px; /* Збільшено проміжок між місцями */
+        gap: 10px;
         align-items: center;
     }
 
     .seat {
-        width: 50px; /* Збільшено ширину */
-        height: 50px; /* Збільшено висоту */
+        width: 50px;
+        height: 50px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -64,7 +62,7 @@
         border-radius: 8px;
         cursor: pointer;
         border: 2px solid black;
-        font-size: 16px; /* Збільшено шрифт */
+        font-size: 16px;
         padding: 5px;
     }
 
@@ -74,7 +72,6 @@
         color: green;
         margin-top: 5px;
     }
-
 
     .standard {
         background-color: lightgray;
@@ -98,9 +95,8 @@
         color: white;
     }
 
-
     .vip-gap {
-        width: 30px; /* Більший відступ */
+        width: 30px;
     }
 
     .screen-container {
@@ -111,43 +107,33 @@
 
     .screen {
         width: 50%;
-        height: 40px; /* Збільшено висоту */
+        height: 40px;
         background-color: black;
         color: white;
         text-align: center;
-        font-size: 20px; /* Збільшено шрифт */
+        font-size: 20px;
         font-weight: bold;
         margin-top: 30px;
         border-radius: 8px;
-        line-height: 40px; /* Вирівняно текст по вертикалі */
+        line-height: 40px;
     }
 </style>
 
 <script>
-    // Додаємо обробник події для вибору місць
     document.querySelectorAll(".seat").forEach(seat => {
         seat.addEventListener("click", function () {
-            const seatId = this.getAttribute("data-ticket-id");
-            const seatNumber = this.getAttribute("data-seat-number");
-            const seatType = this.getAttribute("data-seat-type");
-
-            // Перевіряємо, чи місце вже вибрано
-            if (this.classList.contains("selected")) {
-                this.classList.remove("selected");
-            } else {
-                this.classList.add("selected");
+            if (!this.classList.contains("paid")) {
+                this.classList.toggle("selected");
             }
         });
     });
 
-        // Функція для оновлення стану місць
     async function refreshSeats() {
-        const response = await fetch(window.location.href); // Оновлення сторінки
+        const response = await fetch(window.location.href);
         const text = await response.text();
-        document.body.innerHTML = text; // Перемальовуємо сторінку
+        document.body.innerHTML = text;
     }
 
-        // Обробник кнопки "Confirm Selection"
     document.getElementById("confirm-selection-btn").addEventListener("click", async () => {
         const selectedSeats = [];
         document.querySelectorAll(".seat.selected").forEach(seat => {
@@ -163,7 +149,6 @@
             return;
         }
 
-        // Відправляємо вибрані місця на сервер
         const response = await fetch('/Tickets/ConfirmSelection', {
             method: 'POST',
             headers: {
@@ -174,11 +159,11 @@
 
         if (response.ok) {
             alert("Tickets successfully purchased!");
-            await refreshSeats(); // Оновлюємо стан місць після покупки
+            await refreshSeats();
         } else {
             const errorMessage = await response.text();
             alert("Error: " + errorMessage);
-            await refreshSeats(); // Оновлюємо сторінку, якщо покупка не вдалася
+            await refreshSeats();
         }
     });
 </script>

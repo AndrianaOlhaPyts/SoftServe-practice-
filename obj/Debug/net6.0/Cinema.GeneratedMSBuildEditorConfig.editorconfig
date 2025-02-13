@@ -27,10 +27,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Cinema/SoftServe-practice-.git/Views/Home/ManageTickets.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYW5hZ2VUaWNrZXRzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/User/Desktop/Cinema/SoftServe-practice-.git/Views/Home/Movies.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNb3ZpZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -41,6 +37,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/User/Desktop/Cinema/SoftServe-practice-.git/Views/Home/Sessions.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXNzaW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/Cinema/SoftServe-practice-.git/Views/Home/Tickets.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUaWNrZXRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/User/Desktop/Cinema/SoftServe-practice-.git/Views/Movies/CreateMovie.cshtml]
@@ -93,6 +93,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/User/Desktop/Cinema/SoftServe-practice-.git/Views/Tickets/ClientManageTickets.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0c1xDbGllbnRNYW5hZ2VUaWNrZXRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/Cinema/SoftServe-practice-.git/Views/Tickets/ManageTickets.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0c1xNYW5hZ2VUaWNrZXRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/User/Desktop/Cinema/SoftServe-practice-.git/Views/_ViewImports.cshtml]

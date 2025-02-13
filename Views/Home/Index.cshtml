@@ -1,65 +1,122 @@
-﻿@using Cinema.Models.DataBaseModels
-@model List<IGrouping<Movie, Session>>
-
-
-@{
-    ViewData["Title"] = "Upcoming Movies & Sessions";
-}
-
-<div class="container">
+﻿<div class="container">
     <h2 class="text-center">Upcoming Movies & Sessions</h2>
 
-    @foreach (var group in Model)
-    {
-        var movie = group.Key;
-        var trailerUrl = movie.TrailerUrl; // URL трейлера
+    <!-- Фільтри -->
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="ratingFilter" class="form-label">Filter by Rating:</label>
+            <select id="ratingFilter" class="form-select">
+                <option value="">All Ratings</option>
+                <option value="8">8+</option>
+                <option value="7">7+</option>
+                <option value="6">6+</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="dateFilter" class="form-label">Filter by Date:</label>
+            <input type="date" id="dateFilter" class="form-control">
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+            <button class="btn btn-primary w-100" onclick="applyFilters()">Apply Filters</button>
+        </div>
+    </div>
 
-        <div class="card mb-4">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="@movie.PosterUrl" class="img-fluid rounded-start" alt="@movie.Title Poster">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="@Url.Action("DetailsMovie", "Movies", new { id = movie.Id })">@movie.Title</a>
-                        </h4>
+    <div id="moviesContainer">
+        @foreach (var group in Model)
+        {
+            var movie = group.Movie;
+            var trailerUrl = movie.TrailerUrl; 
 
-                        <button class="btn btn-danger" onclick="showTrailer('@trailerUrl')">
-                            Watch Trailer
-                        </button>
+            <div class="card mb-4 movie-card" data-rating="@movie.Rating">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="@movie.PosterUrl" class="img-fluid rounded-start" alt="@movie.Title Poster">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="@Url.Action("DetailsMovie", "Movies", new { id = movie.Id })">@movie.Title</a>
+                            </h4>
+                            <p><strong>Rating:</strong> @movie.Rating</p>
 
-                        <div id="trailer-container-@movie.Id" class="mt-3" style="display: none;">
-                            <iframe id="trailer-@movie.Id" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
+                            <button class="btn btn-danger" onclick="showTrailer('@movie.Id', '@trailerUrl')">
+                                Watch Trailer
+                            </button>
+
+                            <div id="trailer-container-@movie.Id" class="mt-3" style="display: none;">
+                                <iframe id="trailer-@movie.Id" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
+                            </div>
+
+                            <h5 class="mt-3">Upcoming Sessions:</h5>
+                            <div class="session-list">
+                                @foreach (var session in group.Sessions)
+                                {
+                                    <p class="session-item" data-date="@session.StartTime.ToString("yyyy-MM-dd")">
+                                        <strong>@session.StartTime.ToString("dd MMMM yyyy")</strong>
+                                        <a href="@Url.Action("DetailsSession", "Sessions", new { id = session.Id })" class="btn btn-primary ms-2">
+                                            @session.StartTime.ToString("HH:mm")
+                                        </a>
+                                    </p>
+                                }
+                            </div>
                         </div>
-
-                        <h5 class="mt-3">Upcoming Sessions:</h5>
-                        @foreach (var session in group.OrderBy(s => s.StartTime))
-                        {
-                            <p>
-                                <strong>@session.StartTime.ToString("dd MMMM yyyy")</strong>
-                                <a href="@Url.Action("DetailsSession", "Sessions", new { id = session.Id })" class="btn btn-primary ms-2">
-                                    @session.StartTime.ToString("HH:mm")
-                                </a>
-                            </p>
-                        }
                     </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>
 
 <script>
-    function showTrailer(url) {
-        let container = document.querySelector(`#trailer-container-${url.split('/').pop()}`);
-        let iframe = container.querySelector("iframe");
-        if (container.style.display === "none") {
-            iframe.src = url.replace("watch?v=", "embed/");
-            container.style.display = "block";
-        } else {
-            iframe.src = "";
-            container.style.display = "none";
-        }
+    function showTrailer(movieId, url) {
+    let container = document.getElementById(`trailer-container-${movieId}`);
+    let iframe = document.getElementById(`trailer-${movieId}`);
+
+    if (container.style.display === "none") {
+        // Заміна на вбудований формат
+        let embedUrl = url.replace("https://youtu.be/", "https://www.youtube.com/embed/");
+        iframe.src = embedUrl;
+        container.style.display = "block";
+    } else {
+        iframe.src = "";
+        container.style.display = "none";
+    }
+}
+
+
+
+    function applyFilters() {
+        let selectedRating = document.getElementById("ratingFilter").value;
+        let selectedDate = document.getElementById("dateFilter").value;
+
+        let movieCards = document.querySelectorAll(".movie-card");
+
+        movieCards.forEach(card => {
+            let movieRating = parseFloat(card.getAttribute("data-rating"));
+            let showMovie = true;
+
+            if (selectedRating && movieRating < parseFloat(selectedRating)) {
+                showMovie = false;
+            }
+
+            let sessionItems = card.querySelectorAll(".session-item");
+            let hasMatchingSession = false;
+
+            sessionItems.forEach(session => {
+                let sessionDate = session.getAttribute("data-date");
+                if (!selectedDate || sessionDate === selectedDate) {
+                    session.style.display = "block";
+                    hasMatchingSession = true;
+                } else {
+                    session.style.display = "none";
+                }
+            });
+
+            if (!hasMatchingSession) {
+                showMovie = false;
+            }
+
+            card.style.display = showMovie ? "block" : "none";
+        });
     }
 </script>

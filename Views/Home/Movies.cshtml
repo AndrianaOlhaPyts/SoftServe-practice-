@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Cinema.Models.DataBaseModels.Movie>
+﻿@model IEnumerable<Cinema.DTOs.MovieDTO>
 
 @{
     ViewData["Title"] = "Movies";
@@ -7,7 +7,10 @@
 <h1>Movies</h1>
 
 <p>
-    <a href="@Url.Action("CreateMovie", "Movies")" class="btn btn-primary">Add New Movie</a>
+    @if (User.IsInRole("Admin"))
+    {
+        <a href="@Url.Action("CreateMovie", "Movies")" class="btn btn-primary">Add New Movie</a>
+    }
 </p>
 
 <table class="table">
@@ -16,7 +19,10 @@
             <th>Poster</th>
             <th>Title</th>
             <th>Trailer</th>
-            <th>Actions</th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>Actions</th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -37,7 +43,12 @@
 
                 <!-- Trailer -->
                 <td>
-                    <a href="@movie.TrailerUrl" target="_blank" class="btn btn-secondary">Watch Trailer</a>
+                    <button class="btn btn-secondary" onclick="showTrailer('@movie.Id', '@movie.TrailerUrl')">Watch Trailer</button>
+
+                    <!-- Trailer Container -->
+                    <div id="trailer-container-@movie.Id" class="mt-2" style="display: none;">
+                        <iframe id="trailer-@movie.Id" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+                    </div>
                 </td>
 
                 <!-- Actions -->
@@ -52,3 +63,20 @@
         }
     </tbody>
 </table>
+
+<script>
+    function showTrailer(movieId, url) {
+        let container = document.getElementById(`trailer-container-${movieId}`);
+        let iframe = document.getElementById(`trailer-${movieId}`);
+
+        if (container.style.display === "none") {
+            // Заміна на вбудований формат URL
+            let embedUrl = url.replace("https://youtu.be/", "https://www.youtube.com/embed/");
+            iframe.src = embedUrl;
+            container.style.display = "block";
+        } else {
+            iframe.src = "";
+            container.style.display = "none";
+        }
+    }
+</script>

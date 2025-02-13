@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Cinema.Models.DataBaseModels.Ticket>
+﻿@model IEnumerable<Cinema.DTOs.TicketDTO>
+
 
 @{
     ViewData["Title"] = "Manage Tickets";
@@ -13,7 +14,7 @@
 <h2>Manage Tickets</h2>
 
 <div class="hall-layout">
-    @foreach (var row in Model.GroupBy(t => t.Seat.RowId).OrderBy(g => g.Key))
+    @foreach (var row in Model.GroupBy(t => t.Seat.RowId).OrderByDescending(g => g.First().Seat.Row.Number))
     {
         <div class="row-layout">
             @foreach (var ticket in row.OrderBy(t => t.Seat.SeatNumber))

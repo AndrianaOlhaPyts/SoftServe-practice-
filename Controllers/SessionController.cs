@@ -111,7 +111,7 @@ namespace Cinema.Controllers
             await _unitOfWork.SaveAsync();
 
             // 📌 Перенаправляємо на сторінку керування квитками
-            return RedirectToAction("ManageTickets", "Home", new { sessionId = session.Id });
+            return RedirectToAction("ManageTickets","Tickets", new { sessionId = session.Id });
         }
 
         // 📌 Форма редагування сеансу
@@ -158,7 +158,7 @@ namespace Cinema.Controllers
             var session = _mapper.Map<Session>(sessionDTO);  // Перетворюємо DTO в модель
             await _unitOfWork.Sessions.UpdateAsync(session);
             await _unitOfWork.SaveAsync();
-            return RedirectToAction("ManageTickets", "Home", new { sessionId = session.Id });
+            return RedirectToAction("ManageTickets", "Tickets", new { sessionId = session.Id });
         }
 
         // 📌 Видалення сеансу
@@ -183,5 +183,21 @@ namespace Cinema.Controllers
             await _unitOfWork.SaveAsync();
             return RedirectToAction("Sessions", "Home");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> FilterSessions(double? minRating, DateTime? sessionDate)
+        {
+            var allSessions = await _unitOfWork.Sessions.GetAllSessionsAsync();
+            var sessions = allSessions
+                .Where(s =>
+                    (!minRating.HasValue || s.Movie.Rating >= (decimal)minRating.Value) &&
+                    (!sessionDate.HasValue || s.StartTime.Date == sessionDate.Value.Date))
+                .ToList();
+
+            var groupedSessions = sessions.GroupBy(s => s.Movie).ToList();
+
+            return PartialView("_FilteredSessionsPartial", groupedSessions);
+        }
+
     }
 }

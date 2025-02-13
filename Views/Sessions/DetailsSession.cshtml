@@ -13,7 +13,7 @@
 
 @if (User.IsInRole("Admin"))
 {
-    <a href="@Url.Action("ManageTickets", "Home", new { sessionId = Model.Id })" class="btn btn-primary">
+    <a href="@Url.Action("ManageTickets", "Tickets", new { sessionId = Model.Id })" class="btn btn-primary">
         Manage Tickets
     </a>
 }

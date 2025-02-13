@@ -1,42 +1,45 @@
-﻿@model IEnumerable<Cinema.Models.DataBaseModels.Session>
+﻿@model IEnumerable<Cinema.DTOs.SessionDTO>
 
-@{
+    @{
     ViewData["Title"] = "Sessions";
-}
+    }
 
-<h1>Sessions</h1>
+    <h1>Sessions</h1>
 
-<p>
-    <a href="@Url.Action("CreateSession","Sessions")" class="btn btn-primary">Add New Session</a>
-</p>
+    <p>
+        @if (User.IsInRole("Admin"))
+    {
+        <a href="@Url.Action("CreateSession","Sessions") " class="btn btn-primary">Add New Session</a>
+    }
+    </p>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Movie</th>
-            <th>Hall</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var session in Model)
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Movie</th>
+                <th>Hall</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var session in Model)
         {
             <tr>
-                <td>@session.Movie.Title</td>
-                <td>@session.Hall.Name</td>
+                <td>@session.MovieTitle</td>
+                <td>@session.HallName</td>
                 <td>@session.StartTime.ToString("yyyy-MM-dd HH:mm")</td>
                 <td>@session.EndTime.ToString("yyyy-MM-dd HH:mm")</td>
                 <td>
                     <a href="@Url.Action("DetailsSession","Sessions", new { id = session.Id })" class="btn btn-info">View</a>
                     @if (User.IsInRole("Admin"))
                     {
-                        <a href="@Url.Action("EditSession","Sessions", new { id = session.Id })" class="btn btn-warning">Edit</a>
-                        <a href="@Url.Action("DeleteSession","Sessions", new { id = session.Id })" class="btn btn-danger">Delete</a>
+                    <a href="@Url.Action("EditSession","Sessions", new { id = session.Id })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("DeleteSession","Sessions", new { id = session.Id })" class="btn btn-danger">Delete</a>
                     }
                 </td>
             </tr>
         }
-    </tbody>
-</table>
+        </tbody>
+    </table>

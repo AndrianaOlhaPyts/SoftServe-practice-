@@ -1,4 +1,5 @@
-﻿using Cinema.Models.DataBaseModels;
+﻿using AutoMapper;
+using Cinema.DTOs;
 using Cinema.Repository.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,12 @@ namespace Cinema.Controllers
     public class TicketsController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public TicketsController(IUnitOfWork unitOfWork)
+        public TicketsController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         // 📌 Відображення сторінки керування квитками
@@ -28,11 +31,13 @@ namespace Cinema.Controllers
                 return NotFound("Квитки не знайдено.");
             }
 
-            return View(tickets);
+            var ticketDTOs = _mapper.Map<List<TicketDTO>>(tickets); // Перетворення в DTO
+            return View(ticketDTOs);
         }
 
         // 📌 Оновлення ціни квитка
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdatePrices([FromBody] List<TicketPriceUpdateModel> updates)
         {
             if (updates == null || !updates.Any())
@@ -53,18 +58,8 @@ namespace Cinema.Controllers
             }
 
             await _unitOfWork.SaveAsync();
-
             return Ok(new { success = true });
         }
-
-
-        // Модель для прийому JSON-запиту
-        public class TicketPriceUpdateModel
-        {
-            public Guid TicketId { get; set; }
-            public double Price { get; set; }
-        }
-
 
         // 📌 Відображення доступних місць для сеансу
         public async Task<IActionResult> ClientManageTickets(Guid sessionId)
@@ -75,7 +70,8 @@ namespace Cinema.Controllers
                 return NotFound("Квитки не знайдено.");
             }
 
-            return View(tickets);  // Повертаємо view для клієнта
+            var ticketDTOs = _mapper.Map<List<TicketDTO>>(tickets); // Перетворення в DTO
+            return View(ticketDTOs);  // Повертаємо view для клієнта
         }
 
         // 📌 Оновлення ціни квитка
@@ -121,6 +117,16 @@ namespace Cinema.Controllers
             return Ok(new { success = true });
         }
 
+        public async Task<IActionResult> Tickets()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Отримуємо ID поточного користувача
+
+            var tickets = await _unitOfWork.Tickets.GetUserActiveTicketsAsync(userId);
+
+            var ticketDTOs = _mapper.Map<List<TicketDTO>>(tickets);
+
+            return View(ticketDTOs);
+        }
 
         // Модель для прийому даних вибору місць
         public class TicketSelectionModel
@@ -130,6 +136,11 @@ namespace Cinema.Controllers
             public string SeatType { get; set; }
         }
 
+        // Модель для прийому JSON-запиту
+        public class TicketPriceUpdateModel
+        {
+            public Guid TicketId { get; set; }
+            public double Price { get; set; }
+        }
     }
-
 }

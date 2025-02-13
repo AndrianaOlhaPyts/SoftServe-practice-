@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cinema.Controllers
 {
@@ -36,6 +37,7 @@ namespace Cinema.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateMovie(MovieDTO movieDTO)
         {
@@ -51,6 +53,7 @@ namespace Cinema.Controllers
         }
 
         // Сторінка для редагування фільму
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> EditMovie(Guid id)
         {
             var movie = await _unitOfWork.Movies.GetByIdAsync(id);
@@ -63,6 +66,7 @@ namespace Cinema.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditMovie(Guid id, MovieDTO movieDTO)
         {
@@ -82,6 +86,7 @@ namespace Cinema.Controllers
         }
 
         // Видалення фільму
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteMovie(Guid id)
         {
             var movie = await _unitOfWork.Movies.GetByIdAsync(id);
@@ -94,6 +99,7 @@ namespace Cinema.Controllers
         }
 
         [HttpPost, ActionName("DeleteMovie")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {

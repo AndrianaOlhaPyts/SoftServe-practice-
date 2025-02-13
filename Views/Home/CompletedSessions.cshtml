@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Cinema.Models.DataBaseModels.Session>
+﻿@model IEnumerable<Cinema.DTOs.SessionDTO>
 
 <h2>Завершені сеанси</h2>
 
@@ -15,8 +15,8 @@
         @foreach (var session in Model)
         {
             <tr>
-                <td>@session.Movie.Title</td>
-                <td>@session.Hall.Name</td>
+                <td>@session.MovieTitle</td>
+                <td>@session.HallName</td>
                 <td>@session.EndTime</td>
                 <td>
                     <a asp-controller="SalesStatistics" asp-action="SessionStatistics" asp-route-sessionId="@session.Id" class="btn btn-primary">
