@@ -3,8 +3,8 @@
     public class Hall
     {
         public Guid Id { get; set; } // Унікальний ідентифікатор
-        public string Name { get; set; } // Назва залу
-        public string Description { get; set; } //Опис
+        public string Name { get; set; } = string.Empty; // name
+        public string Description { get; set; } = string.Empty;
 
         // Навігаційні властивості
         public ICollection<Row> Rows { get; set; } = new List<Row>();

@@ -5,7 +5,7 @@
         public Guid Id { get; set; }
         public Guid RowId { get; set; }
         public int SeatNumber { get; set; }
-        public string SeatType { get; set; }
+        public string SeatType { get; set; } = "standard";
 
         // Навігаційні властивості
         public Row Row { get; set; } = null!;

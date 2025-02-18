@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Cinema.Migrations
 {
     [DbContext(typeof(CinemaContext))]
-    [Migration("20250121104225_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250131094639_InitialCreate4")]
+    partial class InitialCreate4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -93,6 +93,9 @@ namespace Cinema.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("Number")
+                        .HasColumnType("integer");
+
                     b.Property<int>("SeatsCount")
                         .HasColumnType("integer");
 
@@ -155,7 +158,7 @@ namespace Cinema.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("EndTime")
+                    b.Property<DateTimeOffset>("EndTime")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("HallId")
@@ -164,11 +167,8 @@ namespace Cinema.Migrations
                     b.Property<Guid>("MovieId")
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("StartTime")
+                    b.Property<DateTimeOffset>("StartTime")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<decimal>("TicketPrice")
-                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
@@ -201,8 +201,9 @@ namespace Cinema.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -213,29 +214,6 @@ namespace Cinema.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Tickets");
-                });
-
-            modelBuilder.Entity("Cinema.Models.DataBaseModels.User", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -301,6 +279,10 @@ namespace Cinema.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("text");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
@@ -351,6 +333,8 @@ namespace Cinema.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -434,6 +418,13 @@ namespace Cinema.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Cinema.Models.DataBaseModels.AplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.HasDiscriminator().HasValue("AplicationUser");
+                });
+
             modelBuilder.Entity("Cinema.Models.DataBaseModels.Row", b =>
                 {
                     b.HasOne("Cinema.Models.DataBaseModels.Hall", "Hall")
@@ -500,7 +491,7 @@ namespace Cinema.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Cinema.Models.DataBaseModels.User", "User")
+                    b.HasOne("Cinema.Models.DataBaseModels.AplicationUser", "User")
                         .WithMany("Tickets")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -588,13 +579,12 @@ namespace Cinema.Migrations
 
             modelBuilder.Entity("Cinema.Models.DataBaseModels.Session", b =>
                 {
-                    b.Navigation("SalesStatistics")
-                        .IsRequired();
+                    b.Navigation("SalesStatistics");
 
                     b.Navigation("Tickets");
                 });
 
-            modelBuilder.Entity("Cinema.Models.DataBaseModels.User", b =>
+            modelBuilder.Entity("Cinema.Models.DataBaseModels.AplicationUser", b =>
                 {
                     b.Navigation("Tickets");
                 });

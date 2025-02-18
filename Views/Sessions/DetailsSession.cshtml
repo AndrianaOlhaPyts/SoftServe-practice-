@@ -1,0 +1,25 @@
+﻿@model Cinema.DTOs.SessionDTO
+
+@{
+    ViewData["Title"] = "Session Details";
+}
+
+<h2>Session Details</h2>
+
+<p><strong>Movie:</strong> @Model.MovieTitle</p>
+<p><strong>Hall:</strong> @Model.HallName</p>
+<p><strong>Start Time:</strong> @Model.StartTime</p>
+<p><strong>End Time:</strong> @Model.EndTime</p>
+
+@if (User.IsInRole("Admin"))
+{
+    <a href="@Url.Action("ManageTickets", "Tickets", new { sessionId = Model.Id })" class="btn btn-primary">
+        Manage Tickets
+    </a>
+}
+
+
+<!-- Кнопка для переходу на сторінку купівлі квитків для клієнта -->
+<a href="@Url.Action("ClientManageTickets", "Tickets", new { sessionId = Model.Id })" class="btn btn-primary">
+    Buy Tickets
+</a>

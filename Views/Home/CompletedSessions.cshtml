@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Cinema.DTOs.SessionDTO>
+
+<h2>Завершені сеанси</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Фільм</th>
+            <th>Зала</th>
+            <th>Час завершення</th>
+            <th>Дія</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var session in Model)
+        {
+            <tr>
+                <td>@session.MovieTitle</td>
+                <td>@session.HallName</td>
+                <td>@session.EndTime</td>
+                <td>
+                    <a asp-controller="SalesStatistics" asp-action="SessionStatistics" asp-route-sessionId="@session.Id" class="btn btn-primary">
+                        Переглянути статистику
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

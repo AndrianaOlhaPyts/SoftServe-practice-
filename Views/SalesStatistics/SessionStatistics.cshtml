@@ -1,0 +1,16 @@
+﻿@model Cinema.DTOs.SalesStatisticsDTO
+
+<h2>Статистика продажів</h2>
+
+<table class="table">
+    <tr>
+        <th>Продано квитків:</th>
+        <td>@Model.TicketsSold</td>
+    </tr>
+    <tr>
+        <th>Дохід:</th>
+        <td>@Model.Revenue грн</td>
+    </tr>
+</table>
+
+<a asp-controller="Home" asp-action="CompletedSessions" class="btn btn-secondary">Назад</a>
